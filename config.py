@@ -1,13 +1,15 @@
+import os
+
 # Bitcoin node connection settings
 # This should point to your bitcoin/lnd node,
 # with the correct RPC port as set in your config.
 # Connecting through local host as  i'm running SatSale on my node
-host = "127.0.0.1"
-rpcport = "8332"
+host = os.getenv("BITCOIND_HOST")
+rpcport = os.getenv("BITCOIND_PORT")
 
 # From ~/.bitcoin/bitcoin.conf
-username = "bitcoinrpc"
-password = "RPCPASSWORD"
+username = os.getenv("BITCOIND_USER")
+password = os.getenv("BITCOIND_PASS")
 
 # Wallet ("" if single-wallet node, OR wallet name/path as shown in `biitcoin-cli listwallets`)
 wallet = ""
@@ -19,7 +21,7 @@ api_key_path = "SatSale_API_key"
 # Make sure this command works `ssh HOST@IP -q -N -L 8332:localhost:8332`
 # This forwards the ports required to talk to the node via RPC (or gRPC in the case of lightning)
 # Use host = "127.0.0.1" and you will be able to see your node on 8332
-tunnel_host = None  # "HOST@IP"
+tunnel_host = None # "HOST@IP"
 
 # Check for payment every xx seconds
 pollrate = 15
