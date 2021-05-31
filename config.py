@@ -1,11 +1,12 @@
 import os
+print(os.environ)
 
 # Bitcoin node connection settings
 # This should point to your bitcoin/lnd node,
 # with the correct RPC port as set in your config.
 # Connecting through local host as  i'm running SatSale on my node
 host = os.getenv("LND_HOST")
-rpcport = os.getenv("LND_PORT")
+rpcport = os.getenv("LND_GLND_PORT")
 
 # From ~/.bitcoin/bitcoin.conf
 username = os.getenv("BITCOIND_USER")
@@ -43,10 +44,10 @@ redirect = "https://github.com/nickfarrow/btcpyment"
 # Switch payment_method to lnd if you want to use lightning payments instead. And uncomment lnd_dir.
 pay_method = "lnd"
 # lnd_dir is only needed if you want to copy macaroon and TLS cert locally
-lnd_dir = "~/.lnd/"
-lnd_rpcport = os.getenv("LND_PORT")
-lnd_macaroon = os.getenv("MACAROON_DIR")
-lnd_cert = os.getenv("TLS_FILE")
+lnd_dir = os.getenv("LND_DATA_DIR")
+lnd_rpcport = os.getenv("LND_GRPC_PORT")
+lnd_macaroon = lnd_dir + "/data/chain/bitcoin/regtest/invoice.macaroon" #os.getenv("MACAROON_DIR")
+lnd_cert = lnd_dir + "/tls.cert" #os.getenv("TLS_FILE")
 
 # DO NOT CHANGE THIS TO TRUE UNLESS YOU WANT ALL PAYMENTS TO AUTOMATICALLY
 # BE CONSIDERED AS PAID.
