@@ -1,5 +1,4 @@
 import os
-print(os.environ)
 
 # Bitcoin node connection settings
 # This should point to your bitcoin/lnd node,
@@ -37,17 +36,17 @@ required_confirmations = 2
 connection_attempts = 3
 
 # Generic redirect url after payment
-redirect = "https://github.com/nickfarrow/btcpyment"
+redirect = None #"https://github.com/nickfarrow/satsale"
 
 # Payment method
 #pay_method = "bitcoind"
 # Switch payment_method to lnd if you want to use lightning payments instead. And uncomment lnd_dir.
 pay_method = "lnd"
 # lnd_dir is only needed if you want to copy macaroon and TLS cert locally
-lnd_dir = os.getenv("LND_DATA_DIR")
+lnd_dir = "/lnd"
 lnd_rpcport = os.getenv("LND_GRPC_PORT")
-lnd_macaroon = lnd_dir + "/data/chain/bitcoin/regtest/invoice.macaroon" #os.getenv("MACAROON_DIR")
-lnd_cert = lnd_dir + "/tls.cert" #os.getenv("TLS_FILE")
+lnd_macaroon = os.getenv("MACAROON_FILE")
+lnd_cert = os.getenv("TLS_FILE")
 
 # DO NOT CHANGE THIS TO TRUE UNLESS YOU WANT ALL PAYMENTS TO AUTOMATICALLY
 # BE CONSIDERED AS PAID.
