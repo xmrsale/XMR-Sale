@@ -9,10 +9,14 @@ import invoice
 from pay import bitcoind
 from pay import lnd
 from gateways import woo_webhook
+from gateways import satsale_webstore
 
 # Begin websocket
 async_mode = None
 app = Flask(__name__)
+
+if config.webstore:
+    app = satsale_webstore.add_webstore_decorators(app)
 
 # Load an API key or create a new one
 if os.path.exists("SatSale_API_key"):
@@ -218,4 +222,4 @@ if config.pay_method == "lnd":
 
 
 if __name__ == "__main__":
-    socket_.run(app, debug=False)
+    socket_.run(app, debug=True)
