@@ -1,5 +1,10 @@
+body {
+    width: 100%;
+    overflow: visible;
+}
+
 /* Overwriting */
-#paybox {
+#paybox2 {
     background-color: #f7931a;
     border-radius: 25px;
     padding-left: 30px;
@@ -11,38 +16,56 @@
     /* height: 90%;
     width: 85%; */
 
-    height: 275px;
-    width:360px;
+    /* height: 275px; */
+    /* width:360px; */
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    margin-top: 50px;
 
 
 
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  /* position: static;
+  left: 0%;
+  top: 0%;
+  -webkit-transform: translate(0%, 0%);
+  transform: translate(-0%, 0%);
+  margin: auto; */
 
 }
 /*  */
 
 
 form {
-  width: 80%;
-  margin-left: 0px;
+  width: 100%;
+  /* margin-left: 0px; */
   /* margin: 0 auto; */
   text-align: center;
 }
 
-#storetable {
- height: 250px;
- width: 350px;
- overflow-x: hidden;
- overflow-y: auto;
+#storetablediv {
+ /* height: 260px;
+ width: 400px; */
+ /* width: 90%; */
+ /* overflow-x: hidden;
+ overflow-y: auto; */
+ width: 80%;
 }
 
 
+#receipttablediv {
+    /* height: 260px; */
+     width: 60%;
+ /* width: 350px; */ */
+ /* width: 90%; */
+ /* overflow-x: hidden; */
+ /* overflow-y: auto; */
+}
+
+
+
 #itemtable {
-    display: inline-block;
+    /* display: inline-block; */
     border-collapse: collapse;
     width: 100%;
 }

@@ -1,4 +1,17 @@
+function clearSearch() {
+    var search = document.getElementById('search');
+    search.value = "";
 
+    $("table tr").each(function(index) {
+        if (index !== 0) {
+            $row = $(this);
+            $row.show();
+            console.log("SEEE")
+        }
+    }
+    );
+    return;
+}
 
 function load_items(items) {
     itemList = items;
@@ -7,7 +20,6 @@ function load_items(items) {
 
     var i = 0;
     for (const item of itemList) {
-        console.log(item);
         itemName = item[0];
         itemPrice = item[1];
         itemImage = item[2];
@@ -18,12 +30,44 @@ function load_items(items) {
             itemName = image + itemName;
         }
         result = result + "<tr><td>" + itemName + "</td><td>$" + itemPrice + "</td><td>" + button + "</td></tr>\n";
+
         i++;
     }
     result = result + "</table>";
 
-    var storeTable = document.getElementById('storetable');
+    var storeTable = document.getElementById('storetablediv');
     storeTable.innerHTML = result;
+
+    return;
+}
+
+function update_receipt(){
+    itemList = items;
+    var receiptresult = "<table id='itemtable'>";
+    var receiptresult = receiptresult + "<tr><th>Item</th><th>Price</th><th>Total</th></tr>";
+
+    var i = 0;
+    var total = 0;
+    for (const item of itemList) {
+        itemName = item[0];
+        itemPrice = item[1];
+        itemImage = item[2];
+
+        var quantityElement = document.getElementById("itemQuantity" + i);
+        if ((quantityElement != null) && (quantityElement.value > 0)) {
+            var quantity = quantityElement.value;
+            receiptresult = receiptresult + "<tr><td>" + quantity + "x " + itemName + "</td><td>$" + itemPrice + "</td><td>$" + itemPrice*quantity + "</td></tr>\n";
+            total += quantity*itemPrice;
+        }
+
+        i++;
+    }
+    // receiptresult = receiptresult + "<tr><td>" + "</td><td>" + "</td><td><b>$" + total + "</b></td></tr>\n"
+    receiptresult = receiptresult + "</table>";
+
+    var receiptTable = document.getElementById('receipttablediv');
+    receiptTable.innerHTML = receiptresult;
+
     return;
 }
 
@@ -55,9 +99,9 @@ function getPriceEstimation() {
 }
 
 function create_value_buttons(itemIndex) {
-    var buttonStart = "<div class='value-button' id='decrease' onclick='decreaseValue(" + itemIndex + ")' value='Decrease Value'>-</div> \
+    var buttonStart = "<div class='value-button' id='decrease' onclick='decreaseValue(" + itemIndex + ");updateInvoice();' value='Decrease Value'>-</div> \
     <input type='number' class='number' id='itemQuantity" + itemIndex + "' placeholder='0' onChange='updateInvoice()'/>\
-    <div class='value-button' id='increase' onclick='increaseValue(" + itemIndex + ")' value='Increase Value'>+</div>";
+    <div class='value-button' id='increase' onclick='increaseValue(" + itemIndex + ");updateInvoice();' value='Increase Value'>+</div>";
     return buttonStart;
 }
 
@@ -83,6 +127,8 @@ function updateInvoice() {
     document.getElementById("sats_amount").innerHTML = Math.round(amount_bitcoin * 10**8);
     document.getElementById("btc_amount").innerHTML = amount_bitcoin;
     document.getElementById("amount").value = invoice_total;
+    console.log(invoice_total);
+    update_receipt();
     return;
 }
 
@@ -90,5 +136,4 @@ function main(items) {
     num_items = items.length;
     getPriceEstimation();
     load_items(items);
-    updateInvoice();
 }
