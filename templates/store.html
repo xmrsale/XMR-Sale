@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='store_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='calc.css') }}">
 
 
     <script src="{{ url_for('static', filename='store.js') }}"></script>
@@ -54,7 +55,12 @@
             </div>
             <div id="right">
                 <h3 style="margin-bottom:0px;">Cart</h3>
+                <p style="text-align:left;padding:0;">BTCUSD: $<b><span id="BTCPrice"></span></b></p>
+                </br>
+                </br>
                 <input class="button button1" onclick="clearQuantities();updateInvoice();" style="float:left; color:black; background-color:orange;width:50px" value="Clear">
+                &nbsp&nbsp&nbsp&nbsp
+                <input type="button" class="button button1" onclick="showHideCalc();" style="float:left; color:white; background-color:navy;" value="Calc">
                 <div id="receipttablediv">
                 </div>
                 <div style="margin-top:100px; wordwrap:break-word; display:inline">
@@ -64,8 +70,46 @@
                     <p style="display:block;padding:0;">&nbsp(<b><span id="btc_amount"></span></b> BTC)</p>
                     <input form="payform" class="button button1" style="float:left;" type="submit" value="Pay"></input>
                     </br>
-                    <p style="text-align:right;padding:0;">BTCUSD: $<b><span id="BTCPrice"></span></b></p>
                 </div>
+                </br>
+                </br>
+                <div class="calculator"  id="calculator-div">
+                    <input type="text" class="calculator-screen" value="" disabled />
+
+                    <div class="calculator-keys">
+
+                        <button type="button" class="operator" value="+">+</button>
+                        <button type="button" class="operator" value="-">-</button>
+                        <button type="button" class="operator" value="*">&times;</button>
+                        <button type="button" class="operator" value="/">&divide;</button>
+
+                        <button type="button" value="7">7</button>
+                        <button type="button" value="8">8</button>
+                        <button type="button" value="9">9</button>
+
+
+                        <button type="button" value="4">4</button>
+                        <button type="button" value="5">5</button>
+                        <button type="button" value="6">6</button>
+
+
+                        <button type="button" value="1">1</button>
+                        <button type="button" value="2">2</button>
+                        <button type="button" value="3">3</button>
+
+
+                        <button type="button" value="0">0</button>
+                        <button type="button" class="decimal" value=".">.</button>
+                        <button type="button" class="all-clear" value="all-clear">AC</button>
+
+                        <button type="button" class="equal-sign operator" value="=">=</button>
+
+                    </div>
+                </div>
+                <script src="{{ url_for('static', filename='calc.js') }}"></script>
+
+
+
             </div>
         </div>
         <div id="right" style="text-align: right; padding: 10px 10px;">

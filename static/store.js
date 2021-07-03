@@ -68,6 +68,9 @@ function update_receipt(){
     var receiptTable = document.getElementById('receipttablediv');
     receiptTable.innerHTML = receiptresult;
 
+    // From calc.js
+    resetCalculator(zero=false)
+
     return;
 }
 
@@ -112,6 +115,16 @@ function clearQuantities() {
     }
     return;
 }
+
+function showHideCalc() {
+  var x = document.getElementById("calculator-div");
+  if (x.style.display === "none") {
+    x.style.display = "";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 function updateInvoice() {
     var i;
     var invoice_total = 0;

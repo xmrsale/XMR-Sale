@@ -4,7 +4,7 @@ html, body {
     width:260px; */
 }
 body{
-    background-color: inherit;
+    background-color: black;
     overflow: hidden;
     font-family: "Lucida Console", "Courier New", monospace;
 }
