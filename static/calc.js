@@ -1,10 +1,21 @@
-// https://freshman.tech/calculator/
+/* MIT LICENSE */
+/* https://freshman.tech/calculator/ */
+
 const calculator = {
   displayValue: '0',
   firstOperand: null,
   waitingForSecondOperand: false,
   operator: null,
 };
+
+function overwriteInvoiceWithCalc(invoice_total_sats) {
+    var amount_bitcoin = invoice_total_sats / 10**8;
+    var amount_USD = amount_bitcoin*1/getAmountBTC(1);
+    // From store.js
+    updateTotals(amount_USD, amount_bitcoin);
+    return;
+}
+
 
 function inputDigit(digit) {
   const { displayValue, waitingForSecondOperand } = calculator;
@@ -46,6 +57,7 @@ function handleOperator(nextOperator) {
 
     calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
     calculator.firstOperand = result;
+    overwriteInvoiceWithCalc(calculator.displayValue);
   }
 
   calculator.waitingForSecondOperand = true;
@@ -117,13 +129,3 @@ keys.addEventListener('click', event => {
 
   updateDisplay();
 });
-
-function launchCalc() {
-    var x = document.getElementById("calculatordiv");
-    if (x.style.display === "none") {
-      x.style.display = "";
-    } else {
-      x.style.display = "none";
-    }
-    }
-}

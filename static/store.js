@@ -68,6 +68,9 @@ function update_receipt(){
     var receiptTable = document.getElementById('receipttablediv');
     receiptTable.innerHTML = receiptresult;
 
+    // From calc.js
+    resetCalculator(zero=false)
+
     return;
 }
 
@@ -112,22 +115,40 @@ function clearQuantities() {
     }
     return;
 }
+
+function showHideCalc() {
+  var x = document.getElementById("calculator-div");
+  if (x.style.display === "none") {
+    x.style.display = "";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function getAmountBTC(invoice_total) {
+    var price = document.getElementById("BTCPrice").innerHTML;
+    var amount_bitcoin = invoice_total / price;
+    amount_bitcoin = amount_bitcoin.toFixed(8);
+    console.log(invoice_total, amount_bitcoin, price);
+    return amount_bitcoin;
+}
+
+function updateTotals(invoice_total, amount_bitcoin) {
+    document.getElementById("invoicetotal").innerHTML = invoice_total;
+    document.getElementById("sats_amount").innerHTML = Math.round(amount_bitcoin * 10**8);
+    document.getElementById("btc_amount").innerHTML = amount_bitcoin;
+    document.getElementById("amount").value = invoice_total;
+    return;
+}
+
 function updateInvoice() {
     var i;
     var invoice_total = 0;
     for (i = 0; i < num_items; i++) {
         invoice_total = invoice_total + document.getElementById("itemQuantity" + i).value * items[i][1];
     }
-    var price = document.getElementById("BTCPrice").innerHTML;
-    var amount_bitcoin = invoice_total / price;
-    amount_bitcoin = amount_bitcoin.toFixed(8);
-    console.log(invoice_total, amount_bitcoin, price);
-
-    document.getElementById("invoicetotal").innerHTML = invoice_total;
-    document.getElementById("sats_amount").innerHTML = Math.round(amount_bitcoin * 10**8);
-    document.getElementById("btc_amount").innerHTML = amount_bitcoin;
-    document.getElementById("amount").value = invoice_total;
-    console.log(invoice_total);
+    var amount_bitcoin = getAmountBTC(invoice_total);
+    updateTotals(invoice_total, amount_bitcoin);
     update_receipt();
     return;
 }
