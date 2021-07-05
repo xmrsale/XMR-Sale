@@ -55,6 +55,7 @@
             <div id="right">
                 <h3 style="margin-bottom:0px;">Cart</h3>
                 <input class="button button1" onclick="clearQuantities();updateInvoice();" style="float:left; color:black; background-color:orange;width:50px" value="Clear">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="button button1" onclick="launchCalc()" style="float:left; color:black; background-color:orange;" value="Calc">
                 <div id="receipttablediv">
                 </div>
                 <div style="margin-top:100px; wordwrap:break-word; display:inline">
@@ -65,6 +66,41 @@
                     <input form="payform" class="button button1" style="float:left;" type="submit" value="Pay"></input>
                     </br>
                     <p style="text-align:right;padding:0;">BTCUSD: $<b><span id="BTCPrice"></span></b></p>
+                </div>
+                </br>
+
+                <div class="calculatordiv">
+                  <input type="text" class="calculator-screen" value="" disabled />
+
+                  <div class="calculator-keys">
+
+                    <button type="button" class="operator" value="+">+</button>
+                    <button type="button" class="operator" value="-">-</button>
+                    <button type="button" class="operator" value="*">&times;</button>
+                    <button type="button" class="operator" value="/">&divide;</button>
+
+                    <button type="button" value="7">7</button>
+                    <button type="button" value="8">8</button>
+                    <button type="button" value="9">9</button>
+
+
+                    <button type="button" value="4">4</button>
+                    <button type="button" value="5">5</button>
+                    <button type="button" value="6">6</button>
+
+
+                    <button type="button" value="1">1</button>
+                    <button type="button" value="2">2</button>
+                    <button type="button" value="3">3</button>
+
+
+                    <button type="button" value="0">0</button>
+                    <button type="button" class="decimal" value=".">.</button>
+                    <button type="button" class="all-clear" value="all-clear">AC</button>
+
+                    <button type="button" class="equal-sign operator" value="=">=</button>
+
+                  </div>
                 </div>
             </div>
         </div>
