@@ -18,11 +18,26 @@ function payment(payment_data) {
             $('#amount_sats').text(Math.round(invoice.btc_value * 10**8)).html();
             $('#timer').text(Math.round(invoice.time_left)).html();
 
-            return payment_uuid
-        }).then(function(payment_uuid) {
-            load_qr(payment_uuid);
+            // If we want to run both lnd and onchain payments (qrbit / flicker mode)
+            if (payment_data.lnd_enabled) {
+                var invoiceDataOnChain = invoiceData;
+                invoiceDataOnChain.method = "bitcoind";
+                $.get("/api/createpayment", invoiceDataOnChain).then(function(data_Onchain) {
+                    invoice_Onchain = data_Onchain.invoice;
+                    payment_uuid_Onchain = invoice_Onchain.uuid;
+                    const qr_refreshInterval = setInterval(function(){load_flicker_qr(payment_uuid, payment_uuid_Onchain);}, 1000);
+
+                });
+            }
+            else {
+            // Otherwise run normally
+                load_qr(payment_uuid);
+            }
             document.getElementById('timerContainer').style.visibility = "visible";
 
+            return payment_uuid;
+
+        }).then(function(payment_uuid) {
             // Pass payment uuid and the interval process to check_payment
             var checkinterval = setInterval(function() {check_payment(payment_uuid, checkinterval, payment_data);}, 1000);
         })
@@ -79,6 +94,19 @@ function load_qr(payment_uuid) {
         document.getElementById('qrImage').src = "/static/qr_codes/" + payment_uuid + ".png";
     }
 }
+
+
+var current_qr_uuid;
+function load_flicker_qr(payment_uuid, payment_uuid_Onchain) {
+    if (payment_uuid != current_qr_uuid) {
+        current_qr_uuid = payment_uuid;
+        load_qr(payment_uuid);
+    } else {
+        current_qr_uuid = payment_uuid_Onchain;
+        load_qr(payment_uuid_Onchain);
+    }
+}
+
 
 function replaceUrlParam(url, paramName, paramValue)
 {
