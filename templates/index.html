@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>SatSale</title>
+    <title>xmrSale</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -25,7 +25,7 @@
     <div id="paybox">
         <div id="row" height="50px">
             <div id="left" style="display:inline-block;" height="75px">
-                <h1>Pay Bitcoin</h>
+                <h1>Pay Monero</h>
             </div>
             <div id="right">
                 <a id="qrClick" target="_blank"><img class="logo" id="qrImage" width="65px" src="https://i.pinimg.com/originals/3a/dd/40/3add4023fa9b435e7da3c09156b88015.png"></a>
@@ -34,8 +34,8 @@
 
 
         <div id="paymentDetails" style="display:block; padding: 0;">
-            <p style="padding:0;">Send: <b><span id="amount_sats"></span></b> sats</p>
-            <p style="padding:0;">&nbsp&nbsp&nbsp&nbsp&nbsp(<b><span id="amount"></span></b> BTC)</p>
+            <p style="padding:0;">Send: <b><span id="amount"></span></b> XMR</p>
+            <!-- <p style="padding:0;">&nbsp&nbsp&nbsp&nbsp&nbsp(<b><span id="amount"></span></b> XMR)</p> -->
             <p style="padding:0;">To: </p><b><p id="address" onclick="copyTextFromElement('address')"></p></b>
             <p style="padding:0;"><span id="status"></span></p>
             <p id="timerContainer" style="padding:0;visibility:hidden;"><span id="timer"></span> seconds remaining.</p>
@@ -47,7 +47,7 @@
             <div id="left" style="text-align: left; padding: 0;">
                 <!-- Alternate between offering lightning or on chain payment switch -->
                 {% if params.lnd_enabled %}
-                    {% if params.method != "bitcoind"%}
+                    {% if params.method != "monerod"%}
                         <button class="button button1" onclick="replaceUrlParam(window.location, 'method', 'bitcoind');">Onchain Payment</button>
                     {% else %}
                         <button class="button button1" onclick="replaceUrlParam(window.location, 'method', 'lnd');">Lightning Payment</button>
@@ -56,7 +56,7 @@
             </div>
 
             <div id="right" style="text-align: right; padding: 10px 10px;">
-                <small style="vertical-align:middle"><a id="about" href="https://github.com/nickfarrow/SatSale" target="_blank">SatSale</a></small>
+                <small style="vertical-align:middle"><a id="about" href="https://github.com/xmrsale/xmrsale" target="_blank">xmrSale</a></small>
             </div>
         </div>
     </div>

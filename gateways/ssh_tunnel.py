@@ -2,7 +2,7 @@ import subprocess
 import time
 
 import config
-from pay import bitcoind
+from pay import monerod
 
 
 def open_tunnel(host, port):

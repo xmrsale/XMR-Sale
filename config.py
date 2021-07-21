@@ -1,19 +1,19 @@
-# Bitcoin node connection settings
-# This should point to your bitcoin/lnd node,
+monero# Monero node connection settings
+# This should point to your monero/lnd node,
 # with the correct RPC port as set in your config.
-# Connecting through local host as  i'm running SatSale on my node
+# Connecting through local host as  i'm running xmrSale on my node
 host = "127.0.0.1"
 rpcport = "8332"
 
-# From ~/.bitcoin/bitcoin.conf
-username = "bitcoinrpc"
+# From ~/.monero/monero.conf
+username = "monerorpc"
 password = "RPCPASSWORD"
 
 # Wallet ("" if single-wallet node, OR wallet name/path as shown in `biitcoin-cli listwallets`)
 wallet = ""
 
 # File in which API key will be stored
-api_key_path = "SatSale_API_key"
+api_key_path = "xmrSale_API_key"
 
 
 #### Connect To Remote Node ####
@@ -44,10 +44,10 @@ required_confirmations = 2
 connection_attempts = 3
 
 # Generic redirect url after payment
-redirect = "https://github.com/nickfarrow/btcpyment"
+redirect = "https://github.com/xmrsale/xmrsale"
 
 # Payment method
-pay_method = "bitcoind"
+pay_method = "monerod"
 # Switch payment_method to lnd if you want to use lightning payments instead. And uncomment lnd_dir.
 #pay_method = "lnd"
 # lnd_dir is only needed if you want to copy macaroon and TLS cert locally

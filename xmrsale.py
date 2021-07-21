@@ -18,19 +18,19 @@ import json
 from gateways import ssh_tunnel
 import config
 from payments import database
-from payments.price_feed import get_btc_value
-from pay import bitcoind
+from payments.price_feed import get_xmr_value
+from pay import monerod
 from pay import lnd
 from gateways import woo_webhook
 
 app = Flask(__name__)
 
-# Load a SatSale API key or create a new one
-if os.path.exists("SatSale_API_key"):
-    with open("SatSale_API_key", "r") as f:
+# Load a xmrSale API key or create a new one
+if os.path.exists("xmrSale_API_key"):
+    with open("xmrSale_API_key", "r") as f:
         app.config["SECRET_KEY"] = f.read().strip()
 else:
-    with open("SatSale_API_key", "w") as f:
+    with open("xmrSale_API_key", "w") as f:
         app.config["SECRET_KEY"] = os.urandom(64).hex()
         f.write(app.config["SECRET_KEY"])
 
@@ -53,7 +53,7 @@ def index():
 @app.route("/pay")
 def pay():
     params = dict(request.args)
-    params["lnd_enabled"] = config.pay_method == "lnd"
+    params["lnd_enabled"] False #= config.pay_method == "lnd"
     params["redirect"] = config.redirect
     # Render payment page with the request arguments (?amount= etc.)
     headers = {"Content-Type": "text/html"}
@@ -65,9 +65,9 @@ def pay():
 api = Api(
     app,
     version="0.1",
-    title="SatSale API",
-    default="SatSale /api/",
-    description="API for creating Bitcoin invoices and processing payments.",
+    title="xmrSale API",
+    default="xmrSale /api/",
+    description="API for creating Monero invoices and processing payments.",
     doc="/docs/",
     order=True,
 )
@@ -78,7 +78,7 @@ invoice_model = api.model(
     {
         "uuid": fields.String(),
         "dollar_value": fields.Float(),
-        "btc_value": fields.Float(),
+        "xmr_value": fields.Float(),
         "method": fields.String(),
         "address": fields.String(),
         "time": fields.Float(),
@@ -101,7 +101,7 @@ status_model = api.model(
 @api.doc(
     params={
         "amount": "An amount in USD.",
-        "method": "(Optional) Specify a payment method: `bitcoind` for onchain, `lnd` for lightning).",
+        "method": "(Optional) Specify a payment method: `monerod` for onchain.",
         "w_url": "(Optional) Specify a webhook url to call after successful payment. Currently only supports WooCommerce plugin.",
     }
 )
@@ -133,7 +133,7 @@ class create_payment(Resource):
         invoice = {
             "uuid": str(uuid.uuid4().hex),
             "dollar_value": dollar_amount,
-            "btc_value": round(get_btc_value(dollar_amount, currency), 8),
+            "xmr_value": round(get_xmr_value(dollar_amount, currency), 8),
             "method": payment_method,
             "time": time.time(),
             "webhook": webhook,
@@ -141,9 +141,9 @@ class create_payment(Resource):
 
         # Get an address / invoice, and create a QR code
         invoice["address"], invoice["rhash"] = node.get_address(
-            invoice["btc_value"], invoice["uuid"]
+            invoice["xmr_value"], invoice["uuid"]
         )
-        node.create_qr(invoice["uuid"], invoice["address"], invoice["btc_value"])
+        node.create_qr(invoice["uuid"], invoice["address"], invoice["xmr_value"])
 
         # Save invoice to database
         database.write_to_database(invoice)
@@ -255,7 +255,7 @@ def check_payment_status(uuid):
         dbg_free_mode_cond = config.free_mode and (time.time() - invoice["time"] > 5)
 
         # If payment is paid
-        if (conf_paid > invoice["btc_value"]) or dbg_free_mode_cond:
+        if (conf_paid > invoice["xmr_value"]) or dbg_free_mode_cond:
             status.update(
                 {
                     "payment_complete": 1,
@@ -277,10 +277,10 @@ def check_payment_status(uuid):
 
 
 def get_node(payment_method):
-    if payment_method == "bitcoind":
-        node = bitcoin_node
-    elif payment_method == "lnd":
-        node = lightning_node
+    if payment_method == "monerod":
+        node = monero_node
+    # elif payment_method == "lnd":
+    #     node = lightning_node
     else:
         node = None
     return node
@@ -294,11 +294,11 @@ api.add_resource(complete_payment, "/api/completepayment")
 
 # Test connections on startup:
 print("Connecting to node...")
-bitcoin_node = bitcoind.btcd()
-print("Connection to bitcoin node successful.")
-if config.pay_method == "lnd":
-    lightning_node = lnd.lnd()
-    print("Connection to lightning node successful.")
+monero_node = monerod.xmrd()
+print("Connection to monero node successful.")
+# if config.pay_method == "lnd":
+#     lightning_node = lnd.lnd()
+#     print("Connection to lightning node successful.")
 
 
 if __name__ == "__main__":

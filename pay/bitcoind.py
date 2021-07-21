@@ -4,7 +4,7 @@ import qrcode
 import json
 
 import config
-from payments.price_feed import get_btc_value
+from invoice.price_feed import get_xmr_value
 
 if config.tor_bitcoinrpc_host is not None:
     from gateways.tor import session
@@ -24,9 +24,9 @@ def call_tor_bitcoin_rpc(method, params):
     return json.loads(response.text)
 
 
-class btcd:
+class xmrd:
     def __init__(self):
-        from bitcoinrpc.authproxy import AuthServiceProxy
+        from monerorpc.authproxy import AuthServiceProxy
 
         for i in range(config.connection_attempts):
             if config.tor_bitcoinrpc_host is None:
@@ -57,7 +57,8 @@ class btcd:
                     info = call_tor_bitcoin_rpc("getblockchaininfo", None)
 
                 print(info)
-                print("Successfully contacted bitcoind.")
+
+                print("Successfully contacted monerod.")
                 break
 
             except Exception as e:
@@ -70,7 +71,7 @@ class btcd:
                 )
         else:
             raise Exception(
-                "Could not connect to bitcoind. \
+                "Could not connect to monerod. \
                 Check your RPC / port tunneling settings and try again."
             )
 

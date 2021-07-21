@@ -1,4 +1,4 @@
-// Payment logic, talks to satsale.py
+// Payment logic, talks to xmrsale.py
 function payment(payment_data) {
     $('document').ready(function(){
         var payment_uuid;
@@ -14,8 +14,8 @@ function payment(payment_data) {
             payment_uuid = invoice.uuid;
 
             $('#address').text(invoice.address).html();
-            $('#amount').text(invoice.btc_value).html();
-            $('#amount_sats').text(Math.round(invoice.btc_value * 10**8)).html();
+            $('#amount').text(invoice.xmr_value).html();
+            // $('#amount_sats').text(Math.round(invoice.btc_value * 10**8)).html();
             $('#timer').text(Math.round(invoice.time_left)).html();
 
             return payment_uuid
