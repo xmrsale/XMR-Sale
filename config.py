@@ -1,4 +1,4 @@
-monero# Monero node connection settings
+# Monero node connection settings
 # This should point to your monero/lnd node,
 # with the correct RPC port as set in your config.
 # Connecting through local host as  i'm running xmrSale on my node
@@ -23,7 +23,7 @@ api_key_path = "xmrSale_API_key"
 # SSH tunnel to node
 # Make sure this command works `ssh HOST@IP -q -N -L 8332:localhost:8332`
 # Use host = "127.0.0.1" and you will be able to see your node on 8332
-tunnel_host = None  # "HOST@IP"
+tunnel_host = "HOST@IP"
 
 # or tor hidden service for RPC (see docs for how to set up), need onion:
 tor_bitcoinrpc_host = None # e.g. "http://if...dwr.onion"
