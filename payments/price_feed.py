@@ -4,13 +4,13 @@ import config
 
 
 def get_price(currency):
-    price_feed = "https://api.coindesk.com/v1/bpi/currentprice.json"
+    price_feed = "https://min-api.cryptocompare.com/data/price?fsym=XMR&tsyms=USD"
     r = requests.get(price_feed)
 
     for i in range(config.connection_attempts):
         try:
             price_data = r.json()
-            prices = price_data["bpi"]
+            price = price_data["USD"]
             break
 
         except Exception as e:
@@ -22,13 +22,7 @@ def get_price(currency):
     else:
         raise ("Failed to reach {}.".format(price_feed))
 
-    try:
-        price = prices[currency]["rate"].replace(",", "")
-        return price
-
-    except:
-        print("Failed to find currency {} from {}.".format(currency, price_feed))
-        return None
+    return price
 
 
 def get_xmr_value(dollar_value, currency):

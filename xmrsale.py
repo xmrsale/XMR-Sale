@@ -20,7 +20,6 @@ import config
 from payments import database
 from payments.price_feed import get_xmr_value
 from pay import monerod
-from pay import lnd
 from gateways import woo_webhook
 
 app = Flask(__name__)
@@ -53,7 +52,7 @@ def index():
 @app.route("/pay")
 def pay():
     params = dict(request.args)
-    params["lnd_enabled"] False #= config.pay_method == "lnd"
+    params["lnd_enabled"] = False #config.pay_method == "lnd"
     params["redirect"] = config.redirect
     # Render payment page with the request arguments (?amount= etc.)
     headers = {"Content-Type": "text/html"}

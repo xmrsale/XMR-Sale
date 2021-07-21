@@ -1,17 +1,16 @@
 # xmrSale
 ## (fork of [SatSale](https://github.com/nickfarrow/xmrSale))
-<!---Existing self-custody Monero payment processors are bloated, difficult to install, and not easily customisable.--->
 xmrSale is a simple, easily deployable, lightweight Monero payment processor that connects to your own Monero node.
 
-Not only will we continually work to ensure xmrSale remains up-to-date with the SatSale project, but we also intend our own uprades:
-* A zero-node mode,
+With your support, we will continually work to ensure that xmrSale remains up-to-date with the SatSale project, and also building above and beyond:
+* Tor
+* A zero-node mode (xpub and blockexplorers)
 * XMR BASED UI
-* Connect over tor to different block explorers
-* Additional webstore plugins
+* Further webstore plugins
+* Tell us what you, the community, desire!!
 
-xmrSale is currently under development. We will add a button green when it is in a usable state!
+**xmrSale is currently under development and does not yet work 100%**. We will add a button green when it is in a usable state! **ETA 1 WEEK**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
 
-Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
 
 Donation Button     ----->  |  Monero Payment Gateway
 :-------------------------:|:-------------------------:
