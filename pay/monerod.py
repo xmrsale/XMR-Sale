@@ -26,7 +26,14 @@ def call_tor_bitcoin_rpc(method, params):
 
 class xmrd:
     def __init__(self):
-        from monerorpc.authproxy import AuthServiceProxy
+        from monerorpc.authproxy import AuthServiceProxy, JSONRPCException
+
+        monerod_connection_str = "http://{}:{}@{}:{}/json_rpc".format(
+            config.username, config.password, config.host, config.monerod_rpcport,# config.wallet
+        )
+        monerowallet_connection_str = "http://{}:{}@{}:{}/json_rpc".format(
+            config.username, config.password, config.host, config.monerowallet_rpcport,# config.wallet
+        )
 
         for i in range(config.connection_attempts):
             if config.tor_bitcoinrpc_host is None:
@@ -50,15 +57,22 @@ class xmrd:
             try:
                 # Normal Connection
                 if config.tor_bitcoinrpc_host is None:
-                    self.rpc = AuthServiceProxy(connection_str)
-                    info = self.rpc.getblockchaininfo()
-                # Tor Connection
+                    print("Attempting to connect to monderod daemon {}.".format(monerod_connection_str))
+                    self.monerod_rpc = AuthServiceProxy(monerod_connection_str)
+                    print(self.monerod_rpc.get_info())
+                    print("Successfully contacted monerod.")
+
+                    print("Attempting to connect to mondero wallet rpc daemon {}.".format(monerowallet_connection_str))
+                    self.monerowallet_rpc = AuthServiceProxy(monerowallet_connection_str)
+                    balance = self.monerowallet_rpc.get_balance()
+                    print(balance)
+                    print("Successfully contacted monero wallet.")
                 else:
                     info = call_tor_bitcoin_rpc("getblockchaininfo", None)
 
                 print(info)
 
-                print("Successfully contacted monerod.")
+
                 break
 
             except Exception as e:
@@ -84,7 +98,7 @@ class xmrd:
 
     def check_payment(self, address):
         if not self.tor:
-            transactions = self.rpc.listtransactions()
+            transactions = self.monerowallet_rpc.get_payments({"payment_id": address})
         else:
             transactions = call_tor_bitcoin_rpc("listtransactions", None)["result"]
 
@@ -104,7 +118,10 @@ class xmrd:
         for i in range(config.connection_attempts):
             try:
                 if not self.tor:
-                    address = self.rpc.getnewaddress(label)
+                    address_data = self.monerowallet_rpc.make_integrated_address(label)
+                    print(address_data)
+                    address, payment_id = address_data['integrated_address'], address_data['payment_id']
+                    return address, payment_id
                 else:
                     address = call_tor_bitcoin_rpc("getnewaddress", [label])["result"]
 
