@@ -1,15 +1,15 @@
 # xmrSale
-## (fork of [SatSale](https://github.com/nickfarrow/xmrSale))
+## (Monero specialized fork of [SatSale](https://github.com/nickfarrow/xmrSale))
 xmrSale is a simple, easily deployable, lightweight Monero payment processor that connects to your own Monero node.
 
 With your support, we will continually work to ensure that xmrSale remains up-to-date with the SatSale project, and also building above and beyond:
 * Tor
 * A zero-node mode (xpub and blockexplorers)
-* XMR BASED UI
+* XMR **BASED UI**
 * Further webstore plugins
 * Tell us what you, the community, desire!!
 
-**xmrSale is currently under development and does not yet work 100%**. We will add a button green when it is in a usable state! **ETA 1 WEEK**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
+**xmrSale is currently under development and does not yet work 100%**. We will add a button green when it is in a usable state! **ETA 3 days**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
 
 
 Donation Button     ----->  |  Monero Payment Gateway
@@ -43,10 +43,10 @@ xmrSale makes donation buttons simple - easy copy paste the one line HTML iframe
 * Lightweight and highly extendable, basic html and css stying. Modular Python backend, take a [look at the code](xmrSale.py) or [lnd.py](/pay/lnd.py)!
 * Natively extendable to all Monerod node features (e.g. segwit) through RPC.
 * QR codes, customizable required payment confirmations and payment expiry time.
-* No shitcoin bloat. Monero only.
+* Privacy ensured. Monero only.
 
 # Installation (short!)
-You require a Monero node, if you don't one you should [install one](https://sethforprivacy.com/guides/run-a-monero-node-advanced/) preferably on a Raspberry Pi / server (VPS). While you can run SatSale on this same machine, a separate VPS is recommended.
+You require a Monero node, if you don't have one you should [install one](https://sethforprivacy.com/guides/run-a-monero-node-advanced/) preferably on a Raspberry Pi / server (VPS). While you can run SatSale on this same machine, a separate VPS is recommended.
 ### Install
 Clone and install dependencies
 ```
@@ -58,10 +58,12 @@ pip3 install -r requirements.txt
 Edit the `config.py` configuration and point to your Monero node:
 ```python
 host = "127.0.0.1"
-rpcport = "8332"
+monerod_rpcport = "18081"
+monerowallet_rpcport = "18090"
 username = "Monerorpc"
 password = "RPCPASSWORD"
 ```
+(You can find these in `monero.conf` or in daemon arguments in your systemd `.service`). Example configs, for hosting xmrSale on a remote machine can be found in [docs/](docs/).
 
 ### Run xmrSale
 Run xmrSale with
@@ -95,20 +97,22 @@ For maximum security, we recommend hosting on a machine where your node only has
 
 
 ### Payment Gateway (Woocommerce)
+## NOT YET TESTED
 Currently we have a plugin for Woocommerce in Wordpress that makes Monero webstores extremely easy, [please click here for installation instructions](docs/woocommerce.md). xmrSale acts as a custom payment gateway for Woocommerce via the php plugin found in `/gateways`. We have plans to extend to other web stores in the future.
 
 # Contributions welcomed
 ### You only need a little python!
 The main code can be found in [xmrsale.py](xmrsale.py). The client-side logic for initiating the payment and querying the API sits in [static/xmrsale.js](static/xmrsale.js), button appearance in [templates/index.html](templates/index.html), and Woocommerce plugin in [gateways/woo_xmrsale.php](gateways/woo_xmrsale.php). Please have ago at implementing some of the things below or in the issues!
 
-![docs/diagram.png](docs/diagram.png)
-
-# Coming soon
+# Coming soon:
 * **Better UI** with more variety of size and theme.
-    * Currency toggle between BTC/USD on donation html.
-* Late payment recourse.
+    * Add a currency toggle between XMR/USD on donation html.
+* Handle unconfirmed payments. What is the best course of action?
 * More readily customisable donation button (text/color/QR code)
 * Different price feeds with various currencies
 
 # Disclaimer
-xmrsale is in early development. As such, we are not responsible for any loss of funds, vulnerabilities with software, or any other grievances which may arise. Always confirm large payments manually and use cold storage as much as possible.
+xmrSale is in very early development. As such, we are not responsible for any loss of funds, vulnerabilities with software, or any other grievances which may arise. Always confirm large payments manually.
+
+# Sponsor
+Please consider [supporting me](https://try.xmrsale.org) via my own instance of xmrSale :). You should also support the [SatSale](https://satsale.org) project as we relied on it heavily as a code base.
