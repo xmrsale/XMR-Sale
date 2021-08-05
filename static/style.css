@@ -2,6 +2,8 @@ html, body {
     display: flex;
     /* height:auto;
     width:260px; */
+    background-image: url('logo.png');
+
 }
 body{
     background-color: inherit;
@@ -10,7 +12,13 @@ body{
 }
 
 #paybox {
-    background-color: #bb0a1e;
+    /* background-image: url('logo.png');
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center; */
+
+    background-color: black;
+
     border-radius: 25px;
     padding-left: 30px;
     padding-right: 30px;
@@ -28,6 +36,17 @@ body{
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+h1, h2 {
+    color: #ff6600
+}
+p, form#p, form#input {
+    color: #ff6600;
+}
+
+#address {
+    color: #4c4c4c
 }
 
 /* Smartphones */
@@ -58,7 +77,7 @@ h1 {
 }
 
 .button {
-  background-color: black;
+  background-color: gray;
   border: none;
   color: white;
   padding: 10px 15px;
@@ -94,7 +113,7 @@ h1 {
 }
 
 #amountenter {
-    background-color: black;
+    background-color: gray;
     color: white;
     font-size: 16px;
     border-radius:5px;
@@ -125,5 +144,5 @@ h1 {
     text-align: right;
 }
 #about {
-    color:#000;
+    color: white;
 }

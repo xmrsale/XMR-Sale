@@ -98,11 +98,15 @@ class xmrd:
 
     def check_payment(self, address):
         if not self.tor:
-            transactions = self.monerowallet_rpc.get_payments({"payment_id": address})['payments']
+            transactions = self.monerowallet_rpc.get_payments({"payment_id": address})
         else:
             transactions = call_tor_bitcoin_rpc("listtransactions", None)["result"]
 
-        relevant_txs = [tx for tx in transactions if tx["address"] == address]
+
+        if 'payments' not in transactions.keys():
+            return 0, 0
+        else:
+            transactions = ['payments']
 
         conf_paid = 0
         unconf_paid = 0
