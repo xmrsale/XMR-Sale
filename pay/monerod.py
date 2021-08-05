@@ -109,7 +109,7 @@ class xmrd:
         current_block_height = self.monerowallet_rpc.get_height()['height']
         for tx in transactions:
             print(tx)
-            if tx["block_height"] - current_block_height >= config.required_confirmations:
+            if current_block_height - tx["block_height"] >= config.required_confirmations:
                 conf_paid += tx["amount"] / 10**12
             else:
                 unconf_paid += tx["amount"] / 10**12
