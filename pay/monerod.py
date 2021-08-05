@@ -98,7 +98,7 @@ class xmrd:
 
     def check_payment(self, address):
         if not self.tor:
-            transactions = self.monerowallet_rpc.get_payments({"payment_id": address})
+            transactions = self.monerowallet_rpc.get_payments({"payment_id": address})['payments']
         else:
             transactions = call_tor_bitcoin_rpc("listtransactions", None)["result"]
 
@@ -106,11 +106,13 @@ class xmrd:
 
         conf_paid = 0
         unconf_paid = 0
-        for tx in relevant_txs:
-            if tx["confirmations"] >= config.required_confirmations:
-                conf_paid += tx["amount"]
+        current_block_height = self.monerowallet_rpc.get_height()['height']
+        for tx in transactions:
+            print(tx)
+            if tx["block_height"] - current_block_height >= config.required_confirmations:
+                conf_paid += tx["amount"] / 10**12
             else:
-                unconf_paid += tx["amount"]
+                unconf_paid += tx["amount"] / 10**12
 
         return conf_paid, unconf_paid
 

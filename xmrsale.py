@@ -245,9 +245,7 @@ def check_payment_status(uuid):
     # If payment has not expired, then we're going to check for any transactions
     if status["time_left"] > 0:
         node = get_node(invoice["method"])
-        print(invoice["rhash"])
         conf_paid, unconf_paid = node.check_payment(invoice["rhash"])
-        print("Done checking")
         # Debugging and demo mode which auto confirms payments after 5 seconds
         dbg_free_mode_cond = config.free_mode and (time.time() - invoice["time"] > 5)
 
