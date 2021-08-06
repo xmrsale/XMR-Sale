@@ -82,7 +82,7 @@ invoice_model = api.model(
         "address": fields.String(),
         "time": fields.Float(),
         "webhook": fields.String(),
-        "rhash": fields.String(),
+        "payment_id": fields.String(),
         "time_left": fields.Float(),
     },
 )
@@ -138,8 +138,7 @@ class create_payment(Resource):
             "webhook": webhook,
         }
 
-        # Get an address / invoice, and create a QR code
-        invoice["address"], invoice["rhash"] = node.get_address(
+        invoice["address"], invoice["payment_id"] = node.get_address(
             invoice["xmr_value"], invoice["uuid"]
         )
         node.create_qr(invoice["uuid"], invoice["address"], invoice["xmr_value"])
@@ -245,7 +244,7 @@ def check_payment_status(uuid):
     # If payment has not expired, then we're going to check for any transactions
     if status["time_left"] > 0:
         node = get_node(invoice["method"])
-        conf_paid, unconf_paid = node.check_payment(invoice["rhash"])
+        conf_paid, unconf_paid = node.check_payment(invoice["payment_id"])
         # Debugging and demo mode which auto confirms payments after 5 seconds
         dbg_free_mode_cond = config.free_mode and (time.time() - invoice["time"] > 5)
 
@@ -274,8 +273,6 @@ def check_payment_status(uuid):
 def get_node(payment_method):
     if payment_method == "monerod":
         node = monero_node
-    # elif payment_method == "lnd":
-    #     node = lightning_node
     else:
         node = None
     return node
@@ -291,9 +288,7 @@ api.add_resource(complete_payment, "/api/completepayment")
 print("Connecting to node...")
 monero_node = monerod.xmrd()
 print("Connection to monero node successful.")
-# if config.pay_method == "lnd":
-#     lightning_node = lnd.lnd()
-#     print("Connection to lightning node successful.")
+
 
 
 if __name__ == "__main__":
