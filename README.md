@@ -31,6 +31,8 @@ Donation Button     ----->  |  Monero Payment Gateway
 - [Disclaimer](#disclaimer)
 - [Sponsor](#sponsor)
 
+## try.xmrsale.org
+
 xmrSale currently serves as a
 1. Donation button for your website that you can easily embed/link to anywhere.
 2. Monero payment gateway, including a Woocommerce plugin that easily turns ANY Wordpress site into a Monero accepting store.
@@ -40,7 +42,7 @@ xmrSale makes donation buttons simple - easy copy paste the one line HTML iframe
 # Features
 * Process payments with your own Monero node via RPC and SSH. Monero core, or any other node software that supports RPC calls.
 * Direct peer-to-peer payments without any middleman. No KYC, and greater privacy than donation systems wher Monero addresses are reused multiple times.
-* Lightweight and highly extendable, basic html and css stying. Modular Python backend, take a [look at the code](xmrSale.py) or [lnd.py](/pay/lnd.py)!
+* Lightweight and highly extendable, basic html and css stying. Modular Python backend, take a [look at the code](xmrsale.py).
 * Natively extendable to all Monerod node features (e.g. segwit) through RPC.
 * QR codes, customizable required payment confirmations and payment expiry time.
 * Privacy ensured. Monero only.
@@ -115,4 +117,4 @@ The main code can be found in [xmrsale.py](xmrsale.py). The client-side logic fo
 xmrSale is in very early development. As such, we are not responsible for any loss of funds, vulnerabilities with software, or any other grievances which may arise. Always confirm large payments manually.
 
 # Sponsor
-Please consider [supporting me](https://try.xmrsale.org) via my own instance of xmrSale :). You should also support the [SatSale](https://satsale.org) project as we relied on it heavily as a code base.
+Please consider [supporting me](https://try.xmrsale.org) via my own instance of xmrSale :). You should also join me in supporting the [SatSale](https://satsale.org) project as we relied on it heavily as a code base.
