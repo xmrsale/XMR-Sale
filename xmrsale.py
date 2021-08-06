@@ -52,7 +52,6 @@ def index():
 @app.route("/pay")
 def pay():
     params = dict(request.args)
-    params["lnd_enabled"] = False #config.pay_method == "lnd"
     params["redirect"] = config.redirect
     # Render payment page with the request arguments (?amount= etc.)
     headers = {"Content-Type": "text/html"}

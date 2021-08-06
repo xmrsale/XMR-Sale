@@ -41,11 +41,6 @@ def close_tunnel():
 if config.tunnel_host is not None:
     tunnel_proc = open_tunnel(config.tunnel_host, config.monerod_rpcport)
     tunnel_proc2 = open_tunnel(config.tunnel_host, config.monerowallet_rpcport)
-
-    # Also for lnd if enabled
-    if "lnd_rpcport" in config.__dict__.keys():
-        open_tunnel(config.tunnel_host, config.lnd_rpcport)
-
     time.sleep(3)
 else:
     tunnel_proc = None

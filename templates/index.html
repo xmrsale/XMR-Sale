@@ -47,14 +47,7 @@
 
         <div id="row">
             <div id="left" style="text-align: left; padding: 0;">
-                <!-- Alternate between offering lightning or on chain payment switch -->
-                {% if params.lnd_enabled %}
-                    {% if params.method != "monerod"%}
-                        <button class="button button1" onclick="replaceUrlParam(window.location, 'method', 'bitcoind');">Onchain Payment</button>
-                    {% else %}
-                        <button class="button button1" onclick="replaceUrlParam(window.location, 'method', 'lnd');">Lightning Payment</button>
-                    {% endif %}
-                {% endif %}
+                <button class="button button1" onclick="replaceUrlParam(window.location, 'method', 'bitcoind');">Onchain Payment</button>
             </div>
 
             <div id="right" style="text-align: right; padding: 10px 10px;">
