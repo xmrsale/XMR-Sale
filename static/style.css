@@ -45,9 +45,6 @@ p, form#p {
     color: #ff6600;
 }
 
-form#input {
-    color: white;
-}
 #address {
     color: white
 }
@@ -116,8 +113,8 @@ h1 {
 }
 
 #amountenter {
-    background-color: gray;
-    color: white;
+    background-color: white;
+    color: black;
     font-size: 16px;
     border-radius:5px;
 }
