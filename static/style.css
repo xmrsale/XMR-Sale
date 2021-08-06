@@ -41,12 +41,15 @@ body{
 h1, h2 {
     color: #ff6600
 }
-p, form#p, form#input {
+p, form#p {
     color: #ff6600;
 }
 
+form#input {
+    color: white;
+}
 #address {
-    color: #4c4c4c
+    color: white
 }
 
 /* Smartphones */
