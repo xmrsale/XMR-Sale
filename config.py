@@ -1,3 +1,5 @@
+import os
+
 # Monero node connection settings
 # This should point to your monero/lnd node,
 # with the correct RPC port as set in your config.
@@ -7,8 +9,8 @@ monerod_rpcport = "18081"
 monerowallet_rpcport = "18090"
 
 # From ~/.monero/monero.conf
-username = "monerorpc"
-password = ""
+username = os.getenv("RPC_USER") #"monerorpc"
+password = os.getenv("RPC_PASS")
 
 # Wallet ("" if single-wallet node, OR wallet name/path as shown in `biitcoin-cli listwallets`)
 wallet = ""
@@ -24,7 +26,9 @@ api_key_path = "xmrSale_API_key"
 # SSH tunnel to node
 # Make sure this command works `ssh HOST@IP -q -N -L 8332:localhost:8332`
 # Use host = "127.0.0.1" and you will be able to see your node on 8332
-tunnel_host = None  # "HOST@IP"
+tunnel_host = None # "HOST@IP"
+
+print(username, password, tunnel_host)
 
 # or tor hidden service for RPC (see docs for how to set up), need onion:
 tor_bitcoinrpc_host = None # e.g. "http://if...dwr.onion"
