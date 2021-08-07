@@ -4,8 +4,8 @@ services:
     build: .
     ports:
       - "8000:8000"
-      - "28081:18081"
-      - "28090:18090"
+      - "18081:18081"
+      - "18090:18090"
     environment:
       RPC_USER: "monerorpc"
       RPC_PASS: ""
