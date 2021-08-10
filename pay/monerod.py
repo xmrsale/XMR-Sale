@@ -4,7 +4,7 @@ import qrcode
 import json
 
 import config
-from invoice.price_feed import get_xmr_value
+from payments.price_feed import get_xmr_value
 
 if config.tor_bitcoinrpc_host is not None:
     from gateways.tor import session
@@ -38,19 +38,11 @@ class xmrd:
         for i in range(config.connection_attempts):
             if config.tor_bitcoinrpc_host is None:
                 self.tor = False
-                connection_str = "http://{}:{}@{}:{}/wallet/{}".format(
-                    config.username,
-                    config.password,
-                    config.host,
-                    config.rpcport,
-                    config.wallet,
-                )
-                print("Attempting to connect to {}.".format(connection_str))
             else:
                 self.tor = True
                 print(
-                    "Attempting to contact bitcoind rpc tor hidden service: {}:{}".format(
-                        config.tor_bitcoinrpc_host, config.rpcport
+                    "Attempting to contact monerod rpc tor hidden service: {}:{}".format(
+                        config.tor_bitcoinrpc_host, 0 #config.rpcport
                     )
                 )
 
@@ -69,8 +61,7 @@ class xmrd:
                     print("Successfully contacted monero wallet.")
                 else:
                     info = call_tor_bitcoin_rpc("getblockchaininfo", None)
-
-                print(info)
+                    print(info)
 
 
                 break
