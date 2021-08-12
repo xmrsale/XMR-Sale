@@ -15,7 +15,7 @@ function payment(payment_data) {
 
             $('#address').text(invoice.address).html();
             $('#amount').text(invoice.xmr_value).html();
-            // $('#amount_sats').text(Math.round(invoice.btc_value * 10**8)).html();
+            // $('#amount_sats').text(Math.round(invoice.xmr_value * 10**8)).html();
             $('#timer').text(Math.round(invoice.time_left)).html();
 
             return payment_uuid
