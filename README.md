@@ -18,12 +18,15 @@ With your support, we will continually work to ensure that xmrSale remains up-to
 
 Many requested features have already been added (docker, monero logo, wallet-rcp instructions) or are under development.
 
-**xmrSale is currently under development and does not yet work 100%**. We will add a button green here when it is in a usable state! **ETA 3 days**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
-
-
 Donation Button     ----->  |  Monero Payment Gateway
 :-------------------------:|:-------------------------:
 [![Donate demo](docs/demo_pay.png)](https://try.xmrSale.org/) <br />(Click for embed demo)<br /> Initiates payment -----> |  [![Store demo](https://user-images.githubusercontent.com/87597480/129158548-0337a429-72a0-4116-af92-b90f96a52e6c.png)](https://try.xmrSale.org/) <br />(Click for WordPress payments demo)
+
+**xmrSale is currently under development and does not yet work 100%**. We will add a button green here when it is in a usable state! **ETA 3 days**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
+
+<img src="http://www.clker.com/cliparts/K/5/Q/4/g/H/glossy-yellow-button-hi.png" alt="drawing" width="50"/>
+
+## Code working but not 100% ready and you may have upgrade pains.
 
 - [Purpose](#purpose)
 - [Features](#features)
