@@ -1,6 +1,17 @@
+#### NOTE
 # Put this in /etc/systemd/system/monerowallet.service
-# You will need to edit the ExecStart line.
-# and run systemctl restart monerowallet
+# You will need to edit the ExecStart line. THEN
+
+## Load the new systemd script for monerod
+# sudo systemctl daemon-reload
+## Set monerowallet rpc to start on boot
+# sudo systemctl enable monerowallet
+## Start the monerowallet service
+# sudo systemctl start monerowallet
+## Tail the monerorpc log
+# sudo tail -f /var/log/monero/monero-rpc.log
+
+
 
 [Unit]
 Description=Monero Full Node Wallet RPC (Mainnet)
@@ -12,32 +23,14 @@ After=network.target
 
 Type=forking
 PIDFile=/var/run/monero/monerowallet.pid
-ExecStart=/usr/local/bin/monero-wallet-rpc --rpc-bind-ip 0.0.0.0 --rpc-bind-port 18090 --confirm-external-bind --rpc-login monerorpc:RPCPASSWORD --daemon-login monerorpc:RPCPASSWORD --daemon-port 18081 --wallet-file /etc/monero/WALLETKEYS.keys --password "" --pidfile /var/run/monero/monerowallet.pid --detach
+ExecStart=/usr/local/bin/monero-wallet-rpc --rpc-bind-ip 0.0.0.0 --rpc-bind-port 18090 --confirm-external-bind --rpc-login monerorpc:RPCPASSWORD --daemon-login monerorpc:RPCPASSWORD --daemon-port 18081 --wallet-file /etc/monero/WALLETKEYS.keys --password "WALLETPASSWORD" --pidfile /var/run/monero/monerowallet.pid  --log-file /var/log/monero/monero-rpc.log --detach
 Restart=on-failure
 RestartSec=30
-
-# Directory creation and permissions
-####################################
 
 # Run as monero:monero
 User=monero
 Group=monero
 
-# /run/monero
-RuntimeDirectory=monero
-RuntimeDirectoryMode=0710
-
-# /var/lib/monero
-StateDirectory=monero
-StateDirectoryMode=0710
-
-# /var/log/monero
-LogsDirectory=monero
-LogsDirectoryMode=0710
-
-# /etc/monero
-ConfigurationDirectory=monero
-ConfigurationDirectoryMode=0710
 
 # Hardening measures
 ####################
