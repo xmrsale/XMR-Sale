@@ -40,6 +40,9 @@ tor_monerorpc_host = None # e.g. "http://if...dwr.onion"
 tor_proxy = None
 ################################
 
+# Amount $X you want to instantly accept 0-conf payments under. (or None)
+zero_conf_limit = 100
+
 # Check for payment every xx seconds
 pollrate = 15
 
