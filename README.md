@@ -65,7 +65,9 @@ monerowallet_rpcport = "18090"
 username = "Monerorpc"
 password = "RPCPASSWORD"
 ```
-(You can find these in `monero.conf` or in daemon arguments in your systemd `.service`). Example configs, for hosting xmrSale on a remote machine can be found in [docs/](docs/).
+(You can find this config in your `monero.conf` or in daemon arguments in your systemd `.service`).
+To be able to connect to your node with full ability to create addresses, we need to have a `monero wallet RPC` service running alongside our monerod RPC. Note you may not have this if you followed sethforprivacy's guide for a node installation, here is an example [monerowawallet.service](docs/monerowawallet.service).
+Connecting to a remote node is easy and can be done over SSH tunneling or tor hidden services, examples can be found in [docs/](docs/).
 
 ### Run xmrSale
 Run xmrSale with
