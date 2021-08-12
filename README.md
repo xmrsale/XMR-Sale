@@ -9,9 +9,14 @@ Please support [via the Monero Community Crowdfunding System](https://repo.getmo
 With your support, we will continually work to ensure that xmrSale remains up-to-date with the SatSale project, and also building above and beyond:
 * Tor
 * A zero-node mode (xpub and blockexplorers)
-* XMR **BASED UI**
 * Further webstore plugins
-* Tell us what you, the community, desire!!
+* **Better UI** with more variety of size and theme.
+    * Add a currency toggle between XMR/USD on donation html.
+* Timedout payment recourse.
+* Different price feeds with various currencies
+* Tell us what you, the community, desire! I intent to many other features alongside the CCS milestones.
+
+Many requested features have already been added (docker, monero logo, wallet-rcp instructions) or are under development.
 
 **xmrSale is currently under development and does not yet work 100%**. We will add a button green here when it is in a usable state! **ETA 3 days**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
 
@@ -117,13 +122,6 @@ Currently we have a plugin for Woocommerce in Wordpress that makes Monero websto
 # Contributions welcomed
 ### You only need a little python!
 The main code can be found in [xmrsale.py](xmrsale.py). The client-side logic for initiating the payment and querying the API sits in [static/xmrsale.js](static/xmrsale.js), button appearance in [templates/index.html](templates/index.html), and Woocommerce plugin in [gateways/woo_xmrsale.php](gateways/woo_xmrsale.php). Please have ago at implementing some of the things below or in the issues!
-
-# Coming soon:
-* **Better UI** with more variety of size and theme.
-    * Add a currency toggle between XMR/USD on donation html.
-* Handle unconfirmed payments. What is the best course of action?
-* More readily customisable donation button (text/color/QR code)
-* Different price feeds with various currencies
 
 # Disclaimer
 xmrSale is in very early development. As such, we are not responsible for any loss of funds, vulnerabilities with software, or any other grievances which may arise. Always confirm large payments manually.
