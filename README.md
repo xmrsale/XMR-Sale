@@ -21,7 +21,7 @@ Donation Button     ----->  |  Monero Payment Gateway
 - [Installation (short!)](#installation--short--)
     + [Install](#install)
     + [Connect to your Bitcoin Node](#connect-to-your-bitcoin-node)
-    + [Run SatSale](#run-satsale)
+    + [Run xmrsale](#run-xmrsale)
     + [Embed a Donation Button](#embed-a-donation-button)
     + [Using HTTPS & Domains](#using-https---domains)
     + [Security](#security)
@@ -48,7 +48,7 @@ xmrSale makes donation buttons simple - easy copy paste the one line HTML iframe
 * Privacy ensured. Monero only.
 
 # Installation (short!)
-You require a Monero node, if you don't have one you should [install one](https://sethforprivacy.com/guides/run-a-monero-node-advanced/) preferably on a Raspberry Pi / server (VPS). While you can run SatSale on this same machine, a separate VPS is recommended.
+You require a Monero node, if you don't have one you should [install one](https://sethforprivacy.com/guides/run-a-monero-node-advanced/) preferably on a Raspberry Pi / server (VPS). While you can run xmrSale on this same machine, a separate VPS is recommended.
 ### Install
 Clone and install dependencies
 ```
@@ -117,4 +117,4 @@ The main code can be found in [xmrsale.py](xmrsale.py). The client-side logic fo
 xmrSale is in very early development. As such, we are not responsible for any loss of funds, vulnerabilities with software, or any other grievances which may arise. Always confirm large payments manually.
 
 # Sponsor
-Please consider [supporting me](https://try.xmrsale.org) via my own instance of xmrSale :). You should also join me in supporting the [SatSale](https://satsale.org) project as we relied on it heavily as a code base.
+Please consider [supporting me](https://try.xmrsale.org) via my own instance of xmrSale :). You should also join me in supporting the [xmrSale](https://xmrsale.org) project as we relied on it heavily as a code base.
