@@ -2,7 +2,7 @@
 ### (Monero specialized fork of [SatSale](https://github.com/nickfarrow/xmrSale))
 xmrSale is a simple, easily deployable, lightweight Monero payment processor that connects to your own Monero node.
 
-# https://try.xmrsale.org
+## [try.xmrsale.org](https://try.xmrsale.org)
 
 With your support, we will continually work to ensure that xmrSale remains up-to-date with the SatSale project, and also building above and beyond:
 * Tor
@@ -33,7 +33,7 @@ Donation Button     ----->  |  Monero Payment Gateway
 - [Disclaimer](#disclaimer)
 - [Sponsor](#sponsor)
 
-# https://try.xmrsale.org
+## [try.xmrsale.org](https://try.xmrsale.org)
 
 xmrSale currently serves as a
 1. Donation button for your website that you can easily embed/link to anywhere.
