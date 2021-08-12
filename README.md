@@ -22,7 +22,7 @@ Donation Button     ----->  |  Monero Payment Gateway
 - [Features](#features)
 - [Installation (short!)](#installation--short--)
     + [Install](#install)
-    + [Connect to your Bitcoin Node](#connect-to-your-bitcoin-node)
+    + [Connect to your Monero Node](#connect-to-your-monero-node)
     + [Run xmrsale](#run-xmrsale)
     + [Embed a Donation Button](#embed-a-donation-button)
     + [Using HTTPS & Domains](#using-https---domains)
