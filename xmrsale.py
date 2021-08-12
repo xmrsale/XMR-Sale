@@ -249,7 +249,6 @@ def check_payment_status(uuid):
             conf_paid += unconf_paid
             unconf_paid = 0
 
-        print("HERE", conf_paid, unconf_paid)
         # Debugging and demo mode which auto confirms payments after 5 seconds
         dbg_free_mode_cond = config.free_mode and (time.time() - invoice["time"] > 5)
 

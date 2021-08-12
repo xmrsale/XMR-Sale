@@ -16,7 +16,7 @@ With your support, we will continually work to ensure that xmrSale remains up-to
 
 Donation Button     ----->  |  Monero Payment Gateway
 :-------------------------:|:-------------------------:
-[![Donate demo](docs/demo_donate.png)](https://try.xmrSale.org/) <br />(Click for embed demo)<br /> Initiates payment -----> |  [![Store demo](https://user-images.githubusercontent.com/87597480/129158548-0337a429-72a0-4116-af92-b90f96a52e6c.png)](https://try.xmrSale.org/) <br />(Click for WordPress payments demo)
+[![Donate demo](docs/demo_pay.png)](https://try.xmrSale.org/) <br />(Click for embed demo)<br /> Initiates payment -----> |  [![Store demo](https://user-images.githubusercontent.com/87597480/129158548-0337a429-72a0-4116-af92-b90f96a52e6c.png)](https://try.xmrSale.org/) <br />(Click for WordPress payments demo)
 
 - [Purpose](#purpose)
 - [Features](#features)
