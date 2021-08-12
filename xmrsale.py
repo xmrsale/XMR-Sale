@@ -244,11 +244,17 @@ def check_payment_status(uuid):
     if status["time_left"] > 0:
         node = get_node(invoice["method"])
         conf_paid, unconf_paid = node.check_payment(invoice["payment_id"])
+
+        if invoice["xmr_value"] < config.zero_conf_limit:
+            conf_paid += unconf_paid
+            unconf_paid = 0
+
+        print("HERE", conf_paid, unconf_paid)
         # Debugging and demo mode which auto confirms payments after 5 seconds
         dbg_free_mode_cond = config.free_mode and (time.time() - invoice["time"] > 5)
 
         # If payment is paid
-        if (conf_paid > invoice["xmr_value"]) or dbg_free_mode_cond:
+        if (conf_paid >= invoice["xmr_value"]) or dbg_free_mode_cond:
             status.update(
                 {
                     "payment_complete": 1,

@@ -93,11 +93,11 @@ class xmrd:
         else:
             transactions = call_tor_bitcoin_rpc("listtransactions", None)["result"]
 
-
         if 'payments' not in transactions.keys():
             return 0, 0
         else:
-            transactions = ['payments']
+            transactions = transactions['payments']
+
 
         conf_paid = 0
         unconf_paid = 0
