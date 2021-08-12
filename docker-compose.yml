@@ -7,5 +7,7 @@ services:
       - "18081:18081"
       - "18090:18090"
     environment:
-      RPC_USER: "monerorpc"
-      RPC_PASS: ""
+      MONERODRPC_USER: "monerod_rpc"
+      MONERODRPC_PASS: ""
+      WALLETRPC_USER: "monerowallet_rpc"
+      WALLETRPC_PASS: ""

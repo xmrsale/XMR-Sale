@@ -6,12 +6,12 @@ import json
 import config
 from payments.price_feed import get_xmr_value
 
-if config.tor_bitcoinrpc_host is not None:
+if config.tor_monerorpc_host is not None:
     from gateways.tor import session
 
 
-def call_tor_bitcoin_rpc(method, params):
-    url = "{}:{}".format(config.tor_bitcoinrpc_host, config.rpcport)
+def call_tor_monero_rpc(method, params):
+    url = "{}:{}".format(config.tor_monerorpc_host, config.rpcport)
     payload = json.dumps({"method": method, "params": params})
     headers = {"content-type": "application/json", "cache-control": "no-cache"}
     response = session.request(
@@ -29,26 +29,26 @@ class xmrd:
         from monerorpc.authproxy import AuthServiceProxy, JSONRPCException
 
         monerod_connection_str = "http://{}:{}@{}:{}/json_rpc".format(
-            config.username, config.password, config.host, config.monerod_rpcport,# config.wallet
+            config.monerod_username, config.monerod_password, config.host, config.monerod_rpcport,# config.wallet
         )
         monerowallet_connection_str = "http://{}:{}@{}:{}/json_rpc".format(
-            config.username, config.password, config.host, config.monerowallet_rpcport,# config.wallet
+            config.wallet_username, config.wallet_password, config.host, config.monerowallet_rpcport,# config.wallet
         )
 
         for i in range(config.connection_attempts):
-            if config.tor_bitcoinrpc_host is None:
+            if config.tor_monerorpc_host is None:
                 self.tor = False
             else:
                 self.tor = True
                 print(
                     "Attempting to contact monerod rpc tor hidden service: {}:{}".format(
-                        config.tor_bitcoinrpc_host, 0 #config.rpcport
+                        config.tor_monerorpc_host, 0 #config.rpcport
                     )
                 )
 
             try:
                 # Normal Connection
-                if config.tor_bitcoinrpc_host is None:
+                if config.tor_monerorpc_host is None:
                     print("Attempting to connect to monderod daemon {}.".format(monerod_connection_str))
                     self.monerod_rpc = AuthServiceProxy(monerod_connection_str)
                     print(self.monerod_rpc.get_info())
