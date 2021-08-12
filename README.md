@@ -71,17 +71,20 @@ monerod_password = "MONERODRPC_PASS"
 wallet_username = "WALLETRPC_USER"
 wallet_password = "WALLETRPC_PASS"
 ```
-(You can find this monerod rpc details in `monero.conf` or in daemon arguments within your systemd `.service`).
-To be able to connect to your node with full ability to create addresses, we need to have a `monero wallet RPC` service running alongside our monerod RPC. Note most node guides do not install this, including sethforprivacy's, so we will just create a new `.service` like we did for the monerod daemon, here is an example [monerowawallet.service](docs/monerowawallet.service). Here you set the wallet RPC login.
+You can find these monerod rpc details in `monero.conf` or in daemon arguments within your systemd `.service`.
 
-Connecting to a remote node is easy and can be done over SSH tunneling or tor hidden services, examples can be found in [docs/](docs/) (need work).
+To be able to connect to your node with full ability to create addresses, we need to have a `monero wallet RPC` service running alongside our monerod RPC. Note most node guides do not install this by default, including sethforprivacy's.
+
+To run `monero-wallet-rpc` with arguments, it is probably easiest to run this as a service like you may have done for your monerod daemon. We  will just create a similar `.service`, here is an example [monerowawallet.service](docs/monerowawallet.service. You can set the wallet RPC login as arguments in this file.
+
+Connecting to a remote node is easy and can be done over SSH tunneling or tor hidden services (tor not yet working), examples can be found in [docs/](docs/) (need work).
 
 ### Run xmrSale
 Run xmrSale with
 ```
-gunicorn -w 1 -b 0.0.0.0:8000 xmrSale:app
+gunicorn -w 1 -b 0.0.0.0:8000 xmrsale:app
 ```
-Gunicorn is a lightweight python HTTP server, alternatively you can run with just `python xmrSale.py` though this is not recommended for production.
+Gunicorn is a lightweight python HTTP server, alternatively you can run with just `python xmrsale.py` though this is not recommended for production.
 
 That's it! You should now be able to view your xmrSale server at `http://YOUR_SERVER_IP:8000/`. If running locally, this will be `127.0.0.1:8000`.
 
@@ -89,7 +92,7 @@ If running on a Raspberry Pi, you will want to [forward port 8000 in your router
 
 You will want to run gunicorn with nohup so it continues serving in the background:
 ```
-nohup gunicorn -w 1 0.0.0.0:8000 xmrSale:app > log.txt 2>&1 &
+nohup gunicorn -w 1 0.0.0.0:8000 xmrsale:app > log.txt 2>&1 &
 tail -f log.txt
 ```
 
