@@ -1,6 +1,8 @@
 # xmrSale
-## (Monero specialized fork of [SatSale](https://github.com/nickfarrow/xmrSale))
+### (Monero specialized fork of [SatSale](https://github.com/nickfarrow/xmrSale))
 xmrSale is a simple, easily deployable, lightweight Monero payment processor that connects to your own Monero node.
+
+# https://try.xmrsale.org
 
 With your support, we will continually work to ensure that xmrSale remains up-to-date with the SatSale project, and also building above and beyond:
 * Tor
@@ -9,7 +11,7 @@ With your support, we will continually work to ensure that xmrSale remains up-to
 * Further webstore plugins
 * Tell us what you, the community, desire!!
 
-**xmrSale is currently under development and does not yet work 100%**. We will add a button green when it is in a usable state! **ETA 3 days**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
+**xmrSale is currently under development and does not yet work 100%**. We will add a button green here when it is in a usable state! **ETA 3 days**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
 
 
 Donation Button     ----->  |  Monero Payment Gateway
@@ -31,7 +33,7 @@ Donation Button     ----->  |  Monero Payment Gateway
 - [Disclaimer](#disclaimer)
 - [Sponsor](#sponsor)
 
-## try.xmrsale.org
+# https://try.xmrsale.org
 
 xmrSale currently serves as a
 1. Donation button for your website that you can easily embed/link to anywhere.
