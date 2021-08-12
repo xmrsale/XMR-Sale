@@ -66,12 +66,15 @@ Edit the `config.py` configuration and point to your Monero node:
 host = "127.0.0.1"
 monerod_rpcport = "18081"
 monerowallet_rpcport = "18090"
-username = "Monerorpc"
-password = "RPCPASSWORD"
+monerod_username = "MONERODRPC_USER"
+monerod_password = "MONERODRPC_PASS"
+wallet_username = "WALLETRPC_USER"
+wallet_password = "WALLETRPC_PASS"
 ```
-(You can find this config in your `monero.conf` or in daemon arguments in your systemd `.service`).
-To be able to connect to your node with full ability to create addresses, we need to have a `monero wallet RPC` service running alongside our monerod RPC. Note you may not have this if you followed sethforprivacy's guide for a node installation, here is an example [monerowawallet.service](docs/monerowawallet.service).
-Connecting to a remote node is easy and can be done over SSH tunneling or tor hidden services, examples can be found in [docs/](docs/).
+(You can find this monerod rpc details in `monero.conf` or in daemon arguments within your systemd `.service`).
+To be able to connect to your node with full ability to create addresses, we need to have a `monero wallet RPC` service running alongside our monerod RPC. Note most node guides do not install this, including sethforprivacy's, so we will just create a new `.service` like we did for the monerod daemon, here is an example [monerowawallet.service](docs/monerowawallet.service). Here you set the wallet RPC login.
+
+Connecting to a remote node is easy and can be done over SSH tunneling or tor hidden services, examples can be found in [docs/](docs/) (need work).
 
 ### Run xmrSale
 Run xmrSale with
