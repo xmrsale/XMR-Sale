@@ -75,7 +75,7 @@ You can find these monerod rpc details in `monero.conf` or in daemon arguments w
 
 To be able to connect to your node with full ability to create addresses, we need to have a `monero wallet RPC` service running alongside our monerod RPC. Note most node guides do not install this by default, including sethforprivacy's.
 
-To run `monero-wallet-rpc` with arguments, it is probably easiest to run this as a service like you may have done for your monerod daemon. We  will just create a similar `.service`, here is an example [monerowawallet.service](docs/monerowallet.service). You can set the wallet RPC login as arguments in this file.
+To run `monero-wallet-rpc` with arguments, it is probably easiest to run this as a service like you may have done for your monerod daemon. We  will just create a similar `.service`, here is an example [monerowallet.service](docs/monerowallet.service). You can set the wallet RPC login as arguments in this file.
 
 Connecting to a remote node is easy and can be done over SSH tunneling or tor hidden services (tor not yet working), examples can be found in [docs/](docs/) (need work).
 
