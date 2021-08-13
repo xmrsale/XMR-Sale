@@ -6,8 +6,8 @@ import time
 import requests
 
 
-def hook(satsale_secret, invoice, order_id):
-    key = codecs.decode(satsale_secret, "hex")
+def hook(xmrsale_secret, invoice, order_id):
+    key = codecs.decode(xmrsale_secret, "hex")
 
     # Calculate a secret that is required to send back to the
     # woocommerce gateway, proving we did not modify id nor amount.
@@ -18,7 +18,7 @@ def hook(satsale_secret, invoice, order_id):
 
     # The main signature  which proves we have paid, and very recently!
     paid_time = int(time.time())
-    params = {"wc-api": "wc_satsale_gateway", "time": str(paid_time), "id": order_id}
+    params = {"wc-api": "wc_xmrsale_gateway", "time": str(paid_time), "id": order_id}
     message = (str(paid_time) + "." + json.dumps(params, separators=(",", ":"))).encode(
         "utf-8"
     )

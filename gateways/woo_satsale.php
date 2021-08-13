@@ -1,9 +1,9 @@
 <?php
 /*
- * Plugin Name: SatSale
- * Plugin URI: https://github.com/nickfarrow/SatSale
+ * Plugin Name: xmrSale
+ * Plugin URI: https://github.com/xmrsale/xmrsale
  * Description: Take Bitcoin payments on your store.
- * Author: Nick Farrow
+ * Author: Nick Farrow & xmrSale Dev
  * Author URI: https://nickfarrow.com
  * Version: 1.0.1
  *
@@ -30,17 +30,17 @@
      }
  }
 
-// SatSale class
-add_filter( 'woocommerce_payment_gateways', 'satsale_add_gateway_class' );
-function satsale_add_gateway_class( $gateways ) {
-	$gateways[] = 'WC_Satsale_Gateway';
+// xmrsale class
+add_filter( 'woocommerce_payment_gateways', 'xmrsale_add_gateway_class' );
+function xmrsale_add_gateway_class( $gateways ) {
+	$gateways[] = 'WC_Xmrsale_Gateway';
 	return $gateways;
 }
 
 // Extend existing payment gateway
-add_action( 'plugins_loaded', 'satsale_init_gateway_class' );
-function satsale_init_gateway_class() {
-	class WC_Satsale_Gateway extends WC_Payment_Gateway {
+add_action( 'plugins_loaded', 'xmrsale_init_gateway_class' );
+function xmrsale_init_gateway_class() {
+	class WC_Xmrsale_Gateway extends WC_Payment_Gateway {
 
         public static $secret = 0;
  		/**
@@ -48,11 +48,11 @@ function satsale_init_gateway_class() {
  		 */
  		public function __construct() {
 
-           	$this->id = 'satsale'; // payment gateway plugin ID
+           	$this->id = 'xmrsale'; // payment gateway plugin ID
            	$this->icon = ''; // URL of the icon that will be displayed on checkout page near your gateway name
            	$this->has_fields = true; // in case you need a custom credit card form
-           	$this->method_title = 'SatSale Gateway';
-           	$this->method_description = 'SatSale payment gateway'; // will be displayed on the options page
+           	$this->method_title = 'xmrSale Gateway';
+           	$this->method_description = 'xmrSale payment gateway'; // will be displayed on the options page
 
            	$this->supports = array(
            		'products'
@@ -66,19 +66,19 @@ function satsale_init_gateway_class() {
            	$this->title = $this->get_option( 'title' );
            	$this->description = $this->get_option( 'description' );
            	$this->enabled = $this->get_option( 'enabled' );
-            $this->satsale_server_url = $this->get_option( 'satsale_server_url' );
+            $this->xmrsale_server_url = $this->get_option( 'xmrsale_server_url' );
             // $this->redirect_url = $this->get_option( 'redirect_url' );
            	// $this->testmode = 'yes' === $this->get_option( 'testmode' );
-           	$this->SatSale_API_Key = $this->get_option( 'SatSale_API_Key' );
+           	$this->Xmrsale_API_Key = $this->get_option( 'Xmrsale_API_Key' );
 
-            $this->callback_URL = str_replace( 'https:', 'http:', add_query_arg( 'wc-api', 'wc_satsale_gateway', home_url( '/' ) ) );
-            // $this->callback_URL = home_url( '/' ) . 'wc-api/' . 'WC_SatSale_Gateway/';
+            $this->callback_URL = str_replace( 'https:', 'http:', add_query_arg( 'wc-api', 'wc_xmrsale_gateway', home_url( '/' ) ) );
+            // $this->callback_URL = home_url( '/' ) . 'wc-api/' . 'WC_xmrsale_Gateway/';
 
            	// This action hook saves the settings
            	add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 
            	// You can also register a webhook here
-           	add_action( 'woocommerce_api_wc_satsale_gateway', array( $this, 'webhook' ) );
+           	add_action( 'woocommerce_api_wc_xmrsale_gateway', array( $this, 'webhook' ) );
  		}
 
 		/**
@@ -89,7 +89,7 @@ function satsale_init_gateway_class() {
             	$this->form_fields = array(
             		'enabled' => array(
             			'title'       => 'Enable/Disable',
-            			'label'       => 'Enable SatSale Gateway',
+            			'label'       => 'Enable Xmrsale Gateway',
             			'type'        => 'checkbox',
             			'description' => '',
             			'default'     => 'no'
@@ -105,15 +105,15 @@ function satsale_init_gateway_class() {
             			'title'       => 'Description',
             			'type'        => 'textarea',
             			'description' => 'This controls the description which the user sees during checkout.',
-            			'default'     => 'Pay with Bitcoin via SatSale',
+            			'default'     => 'Pay with Bitcoin via xmrSale',
             		),
-                    'satsale_server_url' => array(
-                        'title'       => 'SatSale URL',
+                    'xmrsale_server_url' => array(
+                        'title'       => 'xmrSale URL',
                         'type'        => 'text',
-                        'description' => 'Points towards your instance of SatSale, should be IP or https://SERVER.com',
+                        'description' => 'Points towards your instance of xmrSale, should be IP or https://SERVER.com',
                     ),
-            		'SatSale_API_Key' => array(
-            			'title'       => 'SatSale_API_Key',
+            		'Xmrsale_API_Key' => array(
+            			'title'       => 'Xmrsale_API_Key',
             			'type'        => 'text'
             		)
             	);
@@ -140,14 +140,14 @@ function satsale_init_gateway_class() {
 
             write_log($args);
 
-            $key = hex2bin($this->SatSale_API_Key);
+            $key = hex2bin($this->Xmrsale_API_Key);
 
              $payment_url = add_query_arg(
                 $args,
-                $this->satsale_server_url . '/pay'
+                $this->xmrsale_server_url . '/pay'
             );
 
-            // Redirect to SatSale
+            // Redirect to xmrsale
             return [
                 'result'   => 'success',
                 'redirect' => $payment_url
@@ -163,7 +163,7 @@ function satsale_init_gateway_class() {
 
 			$now = time(); // current unix timestamp
 			$json = json_encode($_GET, JSON_FORCE_OBJECT);
-            $key = hex2bin($this->SatSale_API_Key);
+            $key = hex2bin($this->Xmrsale_API_Key);
 
             // Order secret must match to ensure inital payment url
             // had not been tampered when leaving the gateway.

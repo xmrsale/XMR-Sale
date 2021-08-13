@@ -12,11 +12,11 @@ With your support, we will continually work to ensure that xmrSale remains up-to
 * Further webstore plugins
 * **Better UI** with more variety of size and theme.
     * Add a currency toggle between XMR/USD on donation html.
-* Timedout payment recourse.
+* Timed-out payment recourse.
 * Different price feeds with various currencies
 * Tell us what you, the community, desire! I intent to many other features alongside the CCS milestones.
 
-Many requested features have already been added (docker, monero logo, wallet-rcp instructions) or are under development.
+Many requested features have already been added (docker, monero logo, wallet-rpc instructions) or are under development.
 
 Donation Button     ----->  |  Monero Payment Gateway
 :-------------------------:|:-------------------------:
