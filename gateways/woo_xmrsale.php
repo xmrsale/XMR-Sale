@@ -136,7 +136,7 @@ function xmrsale_init_gateway_class() {
          	$args = array(
                 'amount' => $order->get_total(),
                 'w_url' => $this->callback_URL,
-                'id' => $order_id)
+                'id' => $order_id);
 
             write_log($args);
 
