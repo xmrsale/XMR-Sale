@@ -16,7 +16,8 @@ With your support, we will continually work to ensure that xmrSale remains up-to
 * Different price feeds with various currencies
 * Tell us what you, the community, desire! I intent to many other features alongside the CCS milestones.
 
-Many requested features have already been added (docker, monero logo, wallet-rpc instructions) or are under development.
+Now supports docker and 0-conf payments! Also we've put a basic monero theme in for now.
+
 
 Donation Button     ----->  |  Monero Payment Gateway
 :-------------------------:|:-------------------------:
