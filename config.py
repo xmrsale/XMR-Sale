@@ -15,7 +15,7 @@ monerod_password = os.getenv("MONERODRPC_PASS")
 wallet_username = os.getenv("WALLETRPC_USER")
 wallet_password = os.getenv("WALLETRPC_PASS")
 
-## E.g.
+## ^^ Easiest if you hard set these strings like:
 # monerod_username = "monerorpc"
 # monerod_password = "mypass"
 # wallet_username = "walletrpc"
@@ -26,15 +26,16 @@ api_key_path = "xmrSale_API_key"
 
 
 #### Connect To Remote Node ####
-# Can use SSH or TOR
-# to tunnel/relay ports required to talk to the node via RPC (gRPC for lightning)
+# If you're running xmrSale on a machine remote to your monero node, we can use SSH
+# to tunnel/relay ports required to talk to the node via RPC
 
 # SSH tunnel to node
-# Make sure this command works `ssh HOST@IP -q -N -L 8332:localhost:8332`
-# Use host = "127.0.0.1" and you will be able to see your node on 8332
+# Make sure this command works `ssh HOST@IP -q -N -L 18081:localhost:18081`
+# Use host = "127.0.0.1" and you will be able to see your node on 18081
 tunnel_host = None # "HOST@IP"
 
-# or tor hidden service for RPC (see docs for how to set up), need onion:
+##### TOR NOT YET WORKING.
+# tor hidden service for RPC (see docs for how to set up), need onion:
 tor_monerorpc_host = None # e.g. "http://if...dwr.onion"
 # and a tor proxy, default 127.0.0.1:9050 (for Tor Browser use "127.0.0.1:9150")
 tor_proxy = None
