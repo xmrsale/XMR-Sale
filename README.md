@@ -17,7 +17,7 @@ With your support, we will continually work to ensure that xmrSale remains up-to
 * Tell us what you, the community, desire! I intent to many other features alongside the CCS milestones.
 
 We have put a few weeks work into getting this project into a functioning state, including some of our own desired features.
-We recently support:
+Recently we have added:
 * docker
 * 0-conf payments
 * Woocommerce plugin is fixed and working!.
