@@ -5,7 +5,7 @@ Next, in your Wordpress admin area, go to the plugins section and activate xmrSa
 ![Woocommerce Settings](https://user-images.githubusercontent.com/24557779/104807944-c74b2100-5836-11eb-8dba-dfaf8b5f5e1f.png)
 
 Click 'Set Up'/'Manage' and fill out the required fields and point towards your xmrSale instance. You will need to copy the contents of `xmrSale/xmrSale_API_key` into your API key field. This is generated after running xmrSale for the first time.
-![xmrSale Settings](https://user-images.githubusercontent.com/24557779/105259537-164ed880-5be0-11eb-9785-9b2208ad04cb.png)
+![xmrSale Settings](woo_store_settings.png)
 
 Now you should be able to view xmrSale as an option in your checkout:
 ![xmrSale in Checkout](https://user-images.githubusercontent.com/24557779/105259742-7776ac00-5be0-11eb-82fd-9d82a7f1316b.png)

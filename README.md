@@ -16,7 +16,12 @@ With your support, we will continually work to ensure that xmrSale remains up-to
 * Different price feeds with various currencies
 * Tell us what you, the community, desire! I intent to many other features alongside the CCS milestones.
 
-We have put a few weeks work into getting this project into a functioning state, including some of our own desired features. It also now supports docker and 0-conf payments! Also we've put a basic monero theme in for now. We kind of like the basic style, but will modernise over time.
+We have put a few weeks work into getting this project into a functioning state, including some of our own desired features.
+We recently support:
+* docker
+* 0-conf payments
+* Woocommerce plugin is fixed and working!.
+Also we've put a basic monero theme in for now. We kind of like the basic style, but will modernise over time.
 
 
 Donation Button     ----->  |  Monero Payment Gateway
@@ -86,7 +91,12 @@ To be able to connect to your node with full ability to create addresses, we nee
 
 To run `monero-wallet-rpc` with arguments, it is probably easiest to run this as a service like you may have done for your monerod daemon. We  will just create a similar `.service`, here is an example [monerowallet.service](docs/monerowallet.service). You can set the wallet RPC login as arguments in this file.
 
-Connecting to a remote node is easy and can be done over SSH tunneling or tor hidden services (tor not yet working), examples can be found in [docs/](docs/) (need work).
+Connecting to a remote node is easy and can be done over SSH tunneling or tor hidden services (tor not yet working), you can do this manually with
+```
+ssh root@IP -q -N -L 18081:localhost:18081
+ssh root@IP -q -N -L 18090:localhost:18090
+```
+or whatever ports you're using. Further config examples can be found in [docs/](docs/).
 
 ### Run xmrSale
 Run xmrSale with
