@@ -16,18 +16,18 @@ With your support, we will continually work to ensure that xmrSale remains up-to
 * Different price feeds with various currencies
 * Tell us what you, the community, desire! I intent to many other features alongside the CCS milestones.
 
-Now supports docker and 0-conf payments! Also we've put a basic monero theme in for now.
+We have put a few weeks work into getting this project into a functioning state, including some of our own desired features. It also now supports docker and 0-conf payments! Also we've put a basic monero theme in for now. We kind of like the basic style, but will modernise over time.
 
 
 Donation Button     ----->  |  Monero Payment Gateway
 :-------------------------:|:-------------------------:
 [![Donate demo](docs/demo_pay.png)](https://try.xmrSale.org/) <br />(Click for embed demo)<br /> Initiates payment -----> |  [![Store demo](https://user-images.githubusercontent.com/87597480/129158548-0337a429-72a0-4116-af92-b90f96a52e6c.png)](https://try.xmrSale.org/) <br />(Click for WordPress payments demo)
 
-**xmrSale is currently under development and does not yet work 100%**. We will add a button green here when it is in a usable state! **ETA 3 days**. Anything below this button is likely outdated, probably will not work, and will  be updated as transition to Monero from Bitcoin proceeds.
+## Code is working but in early development and you may have upgrade pains.
+**xmrSale is currently under early development, do not use for production always manually check large payments**.
 
-<img src="http://www.clker.com/cliparts/K/5/Q/4/g/H/glossy-yellow-button-hi.png" alt="drawing" width="50"/>
+<img src="https://cdn.pixabay.com/photo/2016/06/01/07/41/green-1428507_960_720.png" alt="drawing" width="50"/>
 
-## Code working but not 100% ready and you may have upgrade pains.
 
 - [Purpose](#purpose)
 - [Features](#features)
@@ -46,7 +46,7 @@ Donation Button     ----->  |  Monero Payment Gateway
 
 ## [try.xmrsale.org](https://try.xmrsale.org)
 
-xmrSale currently serves as a
+xmrSale is a self-hosted Monero payment processor, serving two primary use cases:
 1. Donation button for your website that you can easily embed/link to anywhere.
 2. Monero payment gateway, including a Woocommerce plugin that easily turns ANY Wordpress site into a Monero accepting store.
 
@@ -54,7 +54,7 @@ xmrSale makes donation buttons simple - easy copy paste the one line HTML iframe
 
 # Features
 * Process payments with your own Monero node via RPC and SSH. Monero core, or any other node software that supports RPC calls.
-* Direct peer-to-peer payments without any middleman. No KYC, and greater privacy than donation systems wher Monero addresses are reused multiple times.
+* Direct peer-to-peer payments without any middleman. No KYC, and greater privacy than donation systems where Monero addresses are reused multiple times.
 * Lightweight and highly extendable, basic html and css stying. Modular Python backend, take a [look at the code](xmrsale.py).
 * Natively extendable to all Monerod node features (e.g. segwit) through RPC.
 * QR codes, customizable required payment confirmations and payment expiry time.
