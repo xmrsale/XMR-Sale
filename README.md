@@ -130,7 +130,7 @@ For maximum security, we recommend hosting on a machine where your node only has
 
 
 ### Payment Gateway (Woocommerce)
-## NOT YET TESTED
+## TESTED AND WORKING
 Currently we have a plugin for Woocommerce in Wordpress that makes Monero webstores extremely easy, [please click here for installation instructions](docs/woocommerce.md). xmrSale acts as a custom payment gateway for Woocommerce via the php plugin found in `/gateways`. We have plans to extend to other web stores in the future.
 
 # Contributions welcomed
