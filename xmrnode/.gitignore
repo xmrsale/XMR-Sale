@@ -1,0 +1,10 @@
+*.macaroon
+*.cert
+config.py
+__pycache__/
+gateways/__pycache__/
+invoice/__pycache__/
+pay/__pycache__/
+xmrsale_API_key
+.venv/
+database.db

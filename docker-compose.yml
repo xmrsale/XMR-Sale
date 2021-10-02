@@ -1,13 +1,47 @@
 version: "3.9"
 services:
-  web:
+  monerod:
+    build: xmrnode/
+    restart: unless-stopped
+    container_name: monerod
+    volumes:
+      - bitmonero:/home/monero/.bitmonero
+      - /path/to/wallet:/home/monero/.bitmonero/wallet
+      - /path/to/wallet.keys:/home/monero/.bitmonero/wallet.keys
+
+    ports:
+      - 18080:18080
+      - 18089:18089
+    command:
+      - "--rpc-restricted-bind-ip=0.0.0.0"
+      - "--rpc-restricted-bind-port=18089"
+      - "--no-igd"
+      - "--enable-dns-blocklist"
+      - "--prune-blockchain"
+
+
+  walletrpc:
+      build: xmrnode/
+      command: sh -c "./start.sh"
+      ports:
+          - 18090:18090
+      entrypoint: []
+      volumes:
+        - bitmonero:/home/monero/.bitmonero
+        - /path/to/wallet:/home/monero/.bitmonero/wallet
+        - /path/to/wallet.keys:/home/monero/.bitmonero/wallet.keys
+
+  xmrsale:
     build: .
     ports:
-      - "8000:8000"
-      - "18081:18081"
-      - "18090:18090"
+      - 8000:8000
     environment:
-      MONERODRPC_USER: "monerod_rpc"
-      MONERODRPC_PASS: ""
-      WALLETRPC_USER: "monerowallet_rpc"
-      WALLETRPC_PASS: ""
+      MONERODRPC_PORT: "18089"
+      MONERODRPC_USER: "xmrsale"
+      MONERODRPC_PASS: "verylongxmrnodepassword"
+      MONEROWALLETRPC_PORT: "18090"
+      WALLETRPC_USER: "xmrsale"
+      WALLETRPC_PASS: "verylongxmrwalletpassword"
+
+volumes:
+  bitmonero:

@@ -1,4 +1,3 @@
-#FROM python:3.8-slim-buster
 FROM alpine:3.14
 
 RUN apk add python3 \
@@ -23,9 +22,8 @@ RUN pip3 install -r requirements.txt
 COPY . .
 
 EXPOSE 8000
-EXPOSE 18081
-EXPOSE 18090
+#EXPOSE 18080
+#EXPOSE 18089
 
 ENV PYTHONUNBUFFERED 1
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "-w", "1", "xmrsale:app"]
-

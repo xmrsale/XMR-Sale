@@ -1,5 +1,5 @@
 ## Using a Subdomain with nginx & certbot (HTTPS)
-Embedded iframes are easy if your site only uses HTTP. But if your site uses HTTPS, then you can likely see your donation button at `http://YOUR_SERVER_IP:8000/` but not in the embeded iframe. It is best that we create a new subdomain like `xmrsale.yoursite.com` from which we can serve payments. If you use nginx, you can create a new file `/etc/nginx/sites-enabled/xmrsale`:
+Embedded iframes are easy if your site only uses HTTP. But if your site uses HTTPS, then you can likely see your donation button at `http://YOUR_SERVER_IP:8000/` but not in the embeded iframe due to HTTPS security policies. It is best that we create a new subdomain like `xmrsale.yoursite.com` from which we can serve payments. If you use nginx, you can create a new file `/etc/nginx/sites-enabled/xmrsale`:
 ```
 server {
     listen 80;

@@ -1,14 +1,17 @@
 # xmrSale over tor
 Currently you can use Tor in two ways
-1) Connect xmrSale to your Bitcoin node over a tor hidden service
+1) Connect xmrSale to your Monero node over a tor hidden service
 2) Host xmrSale as a Tor onion
 
 ## Monero Node RPC Hidden Service
-On your Monero node machine install tor and in `/etc/tor/torrc`:
+On your Monero node install tor and in `/etc/tor/torrc`:
 ```
 HiddenServiceDir /var/lib/tor/node_rpc/
-HiddenServicePort 8332 127.0.0.1:8332
+HiddenServicePort NODE_RPC_PORT 127.0.0.1:NODE_RPC_PORT
+HiddenServiceDir /var/lib/tor/wallet_rpc/
+HiddenServicePort WALLET_RPC_PORT 127.0.0.1:WALLET_RPC_PORT
 ```
+with the appropriate NODE_RPC_PORT () and WALLET_RPC_PORT ()
 then
 ```
 sudo systemctl restart tor
@@ -26,6 +29,7 @@ Now start the tor proxy on your xmrSale machine with `sudo tor` and xmrSale is n
 
 
 ## xmrSale Tor .Onion
+Monero payment gateway accessible over tor.
 On your xmrSale machine, install tor and in `/etc/tor/torrc`:
 ```
 HiddenServiceDir /var/lib/tor/xmrsale/
