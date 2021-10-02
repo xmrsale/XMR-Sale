@@ -2,6 +2,8 @@
 ### (Monero specialized fork of [SatSale](https://github.com/nickfarrow/xmrSale))
 xmrSale is a simple, easily deployable, lightweight Monero payment processor that connects to your own Monero node.
 
+**Website & Docs**: [xmrSale.org](xmrSale.org)
+
 Please support [via the Monero Community Crowdfunding System](https://repo.getmonero.org/monero-project/ccs-proposals/-/merge_requests/246).
 
 ## [try.xmrsale.org](https://try.xmrsale.org)
