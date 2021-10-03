@@ -5,8 +5,8 @@ ARG MONERO_BRANCH=v0.17.2.3
 
 # Select Ubuntu 20.04LTS for the build image base
 FROM ubuntu:20.04 as build
-LABEL author="sethsimmons@pm.me" \
-      maintainer="sethsimmons@pm.me"
+LABEL author="xmsale@protonmail.com" \
+      maintainer="xmsale@protonmail.com"
 
 # Dependency list from https://github.com/monero-project/monero#compiling-monero-from-source
 # Added DEBIAN_FRONTEND=noninteractive to workaround tzdata prompt on installation

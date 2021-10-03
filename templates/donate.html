@@ -36,29 +36,29 @@
 <body>
     <div id="paybox">
         <div id="row" height="50px">
-            <div id="left" style="display:inline-block;" height="75px">
-                <h1>Donate <span style="">X</span><span style="color:white">M</span><span style="color:gray">R</span></h>
+            <div id="left" style="display:inline;width:80%" height="75px">
+                <h1><span style="color:gray">Donate</span> Monero</h1>
             </div>
-            <div id="right">
+            <div id="right" style="width:20%">
                 <a class="logo" target="_blank"><img width="65px" src="{{ url_for('static', filename='xmr-logo-outlined.png') }}"></a>
-
-                <!-- <a id="qrClick" target="_blank"><img class="qr" id="qrImage" style="padding-top:25px;display:none" width="65px" src="https://i.pinimg.com/originals/3a/dd/40/3add4023fa9b435e7da3c09156b88015.png"></a> -->
             </div>
         </div>
 
         <div id="paymentForm">
-            <center>
-                <form id="pay" action='/pay' style="margin:0;padding0;">
-                    <h2 style="margin:0;padding0;">Amount:
-                    <input id="amountenter" style="display:inline" size="4" type="float" name="amount" id="amount" placeholder="USD" required>
-                    </h2>
+            <form id="pay" action='/pay' style="margin:0;padding0;">
+                <br>
+                <div class="embossbox">
+                    <span style="display:inline;vertical-align:middle;"><h2 style="margin:0;color:#FF6600;">Amount &nbsp </h2>
                     <br>
-                    <input class="button button1" style="width:40%" type="submit" value="Donate">
-                </form>
-            </center>
+                    <input id="amountenter" size="3" style="text-align:right;float:right;margin-right:5px;background-color:black;color:white" type="float" name="amount" id="amount" placeholder="USD" required></span>
+                    <br>
+
+                </div>
+                <br>
+                <input class="button button1" style="width:30%;float:right; margin-right:0px" type="submit" value="Donate">
+            </form>
         </div>
 
-        <div id="paybutton"></div>
     </div>
 </body>
 </html>

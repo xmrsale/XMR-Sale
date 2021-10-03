@@ -8,7 +8,7 @@ html, body {
 body{
     background-color: inherit;
     overflow: hidden;
-    font-family: "Lucida Console", "Courier New", monospace;
+        font-family: 'Inter custom', sans-serif;
 }
 
 #paybox {
@@ -17,13 +17,13 @@ body{
     background-repeat:   no-repeat;
     background-position: center center; */
 
-    background-color: #4c4c4c;
+    background-color: rgb(33, 36, 41);
 
-    border-radius: 25px;
+    border-radius: 15px;
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     font-size: 16px
 
     /* height:auto; */
@@ -38,11 +38,30 @@ body{
     transform: translate(-50%, -50%);
 }
 
-h1, h2 {
-    color: #ff6600
+.embossbox {
+    background-color:black;
+    border-radius:10px;
+    padding:5px;
+    width:55%;
+    padding-left:10px;
+    margin-left:10px;
+    padding-bottom:15px;
+    border-width:2px;
+    border-color:gray;
+    border-style:solid;>
+}
+
+h1 {
+    color: #ff6600;
+    display:inline;
+}
+
+h2 {
+    color: rgb(255, 255, 255);
+    display:inline;
 }
 p, form#p {
-    color: #ff6600;
+    color: rgb(255, 255, 255);
 }
 
 #address {
@@ -74,6 +93,7 @@ p {
 }
 h1 {
     font-size: 2em;
+    border-bottom: 2px solid gray;
 }
 
 .button {
@@ -97,8 +117,8 @@ h1 {
 
 
 .logo {
-    padding-top:10px;
-    padding-left:30px;
+    padding-top:0px;
+    padding-left:20px;
     float:right;
 }
 
@@ -110,6 +130,11 @@ h1 {
     -ms-transform: scale(2.5); /* IE 9 */
     -webkit-transform: scale(2.5); /* Safari 3-8 */
     transform: scale(3);
+}
+
+
+input:placeholder-shown {
+    border: 2px solid #ff6600;
 }
 
 #amountenter {
@@ -130,12 +155,12 @@ h1 {
     display: flex;
 }
  #left {
-  width: 60%;
+  width: 50%;
   padding: 0 0 0 0;
   float: left;
 }
 #right {
-  width: 40%;
+  width: 50%;
   padding: 0 0 0 0;
   float: right;
 }
