@@ -2,12 +2,11 @@ version: "3.9"
 services:
   monerod:
     build: xmrnode/
+    user: monero
     restart: unless-stopped
     container_name: monerod
     volumes:
       - bitmonero:/home/monero/.bitmonero
-      - /path/to/wallet:/home/monero/.bitmonero/wallet
-      - /path/to/wallet.keys:/home/monero/.bitmonero/wallet.keys
 
     ports:
       - 18080:18080
@@ -28,8 +27,8 @@ services:
       entrypoint: []
       volumes:
         - bitmonero:/home/monero/.bitmonero
-        - /path/to/wallet:/home/monero/.bitmonero/wallet
-        - /path/to/wallet.keys:/home/monero/.bitmonero/wallet.keys
+        # /dir/ must contain a wallet and wallet.keys file!
+        - /path/to/wallets/dir/:/home/monero/.bitmonero/wallet/
 
   xmrsale:
     build: .

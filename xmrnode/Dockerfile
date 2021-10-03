@@ -61,6 +61,8 @@ RUN apt-get update \
 RUN useradd -ms /bin/bash monero \
     && mkdir -p /home/monero/.bitmonero \
     && chown -R monero:monero /home/monero/.bitmonero
+RUN mkdir -p /home/monero/.bitmonero/wallet/ \
+    && chown -R monero:monero /home/monero/.bitmonero/wallet/
 USER monero
 
 # Switch to home directory and install newly built monerod binary
