@@ -28,7 +28,7 @@ Also we've put a basic monero theme in for now. We kind of like the basic style,
 
 Donation Button     ----->  |  Monero Payment Gateway
 :-------------------------:|:-------------------------:
-[![Donate demo](docs/demo_pay.png)](https://try.xmrSale.org/) <br />(Click for embed demo)<br /> Initiates payment -----> |  [![Store demo](https://user-images.githubusercontent.com/87597480/129158548-0337a429-72a0-4116-af92-b90f96a52e6c.png)](https://try.xmrSale.org/) <br />(Click for WordPress payments demo)
+[![Donate demo](docs/demo_donate.png)](https://try.xmrSale.org/) <br />(Click for embed demo)<br /> Initiates payment -----> |  [![Store demo](docs/demo_pay2.png)](https://try.xmrSale.org/) <br />(Click for WordPress payments demo)
 
 **xmrSale is currently under early development, always manually check significant payments**.
 
