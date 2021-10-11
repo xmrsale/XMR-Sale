@@ -38,8 +38,9 @@ Group=monero
 # Provide a private /tmp and /var/tmp.
 PrivateTmp=true
 
+## Commmented out because we need to readwrite walletfile
 # Mount /usr, /boot/ and /etc read-only for the process.
-ProtectSystem=full
+#ProtectSystem=full
 
 # Deny access to /home, /root and /run/user
 ProtectHome=true

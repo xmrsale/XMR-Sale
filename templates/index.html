@@ -24,21 +24,17 @@
 <body>
     <div id="paybox">
         <div id="row" height="50px">
-            <div id="left" style="display:inline-block;" height="75px">
-                <h1>Pay Monero</h>
+            <div id="left" style="display:inline;width:80%" height="75px">
+                <h1><span style="color:gray">Pay</span> Monero</h1>
             </div>
-            <div id="right">
-                <!-- <a id="logo" style="display:none" target="_blank"><img width="65px" src="https://i.pinimg.com/originals/3a/dd/40/3add4023fa9b435e7da3c09156b88015.png"></a> -->
-                <!-- Logo class gets changed to qr via js -->
+            <div id="right" style="width:20%">
                 <a id="qrClick" target="_blank"><img class="logo" id="qrImage" width="65px" src="{{ url_for('static', filename='xmr-logo-outlined.png') }}"></a>
             </div>
         </div>
 
-
         <div id="paymentDetails" style="display:block; padding: 0;">
-            <p style="padding:0;">Send: <b><span id="amount"></span></b> XMR</p>
-            <!-- <p style="padding:0;">&nbsp&nbsp&nbsp&nbsp&nbsp(<b><span id="amount"></span></b> XMR)</p> -->
-            <p style="padding:0;">To: </p><b><p id="address" onclick="copyTextFromElement('address')"></p></b>
+            <p style="padding:0;color:#FF6600;">Send: <b><span id="amount"></span></b> XMR</p>
+            <p style="padding:0;color:#FF6600;">To: </p><b><p id="address" onclick="copyTextFromElement('address')"></p></b>
             <p style="padding:0;"><span id="status"></span></p>
             <p id="timerContainer" style="padding:0;visibility:hidden;"><span id="timer"></span> seconds remaining.</p>
         </div>
