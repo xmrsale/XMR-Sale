@@ -2,7 +2,8 @@ html, body {
     display: flex;
     /* height:auto;
     width:260px; */
-    background-image: url('logo.png');
+    /*background-image: url('logo.png'); */
+    background-color: black;
 
 }
 body{
