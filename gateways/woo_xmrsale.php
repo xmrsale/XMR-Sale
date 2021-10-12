@@ -2,7 +2,7 @@
 /*
  * Plugin Name: xmrSale
  * Plugin URI: https://github.com/xmrsale/xmrsale
- * Description: Take Bitcoin payments on your store.
+ * Description: Take Monero payments on your store.
  * Author: Nick Farrow & xmrSale Dev
  * Author URI: https://nickfarrow.com
  * Version: 1.0.1
