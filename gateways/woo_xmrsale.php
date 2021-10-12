@@ -98,14 +98,14 @@ function xmrsale_init_gateway_class() {
             			'title'       => 'Title',
             			'type'        => 'text',
             			'description' => 'This controls the title which the user sees during checkout.',
-            			'default'     => 'Bitcoin',
+            			'default'     => 'Monero',
             			'desc_tip'    => true,
             		),
             		'description' => array(
             			'title'       => 'Description',
             			'type'        => 'textarea',
             			'description' => 'This controls the description which the user sees during checkout.',
-            			'default'     => 'Pay with Bitcoin via xmrSale',
+            			'default'     => 'Pay with Monero via xmrSale',
             		),
                     'xmrsale_server_url' => array(
                         'title'       => 'xmrSale URL',
