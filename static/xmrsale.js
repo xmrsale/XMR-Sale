@@ -24,7 +24,7 @@ function payment(payment_data) {
             document.getElementById('timerContainer').style.visibility = "visible";
 
             // Pass payment uuid and the interval process to check_payment
-            var checkinterval = setInterval(function() {check_payment(payment_uuid, checkinterval, payment_data);}, 1000);
+            var checkinterval = setInterval(function() {check_payment(payment_uuid, checkinterval, payment_data);}, 2000);
         })
     });
 }
