@@ -116,10 +116,12 @@ class create_payment(Resource):
         if payment_method is None:
             payment_method = config.pay_method
         webhook = request.args.get("w_url")
-        print(webhook)
+
         if webhook is None:
-            print("NO WEBHOOK SUPPLIED")
+            print("No webhook supplied. Not treating as a gateway payment.")
             webhook = None
+        else:
+            print("Webhook for finalising payment: {}".format(webhook))
 
         # Create the payment using one of the connected nodes as a base
         # ready to recieve the invoice.
