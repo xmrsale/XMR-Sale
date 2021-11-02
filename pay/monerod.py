@@ -88,10 +88,17 @@ class xmrd:
         return
 
     def check_payment(self, address):
-        if not self.tor:
-            transactions = self.monerowallet_rpc.get_payments({"payment_id": address})
-        else:
-            transactions = call_tor_bitcoin_rpc("listtransactions", None)["result"]
+        try:
+            if not self.tor:
+                transactions = self.monerowallet_rpc.get_payments({"payment_id": address})
+            else:
+                transactions = call_tor_bitcoin_rpc("listtransactions", None)["result"]
+
+        except Exception as e:
+            print(e)
+            print("Can't connect to wallet-rpc, pausing for a few seconds in case of high load.")
+            time.sleep(5)
+            return 0, 0
 
         if 'payments' not in transactions.keys():
             return 0, 0
