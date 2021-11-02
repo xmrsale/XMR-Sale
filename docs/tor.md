@@ -1,7 +1,7 @@
 # xmrSale over tor
 Currently you can use Tor in two ways
-1) Connect xmrSale to your Monero node over a tor hidden service
-2) Host xmrSale as a Tor onion
+1) Connect xmrSale to your Monero node over a tor hidden service (if you're connecting to a remote node, may be preferable to SSH tunneling).
+2) Host xmrSale as a Tor onion site
 
 ## Monero Node RPC Hidden Service
 On your Monero node install tor and in `/etc/tor/torrc`:
@@ -25,11 +25,12 @@ SocksPort 127.0.0.1:9050 IsolateClientProtocol IsolateDestPort IsolateDestAddr E
 SocksPolicy accept 127.0.0.1
 SocksPolicy reject *
 ```
-Now start the tor proxy on your xmrSale machine with `sudo tor` and xmrSale is now configured to connect to your node over tor.
+Now start the tor proxy on your xmrSale machine with `sudo tor` and xmrSale is now configured to connect to your node at localhost over tor.
 
 
 ## xmrSale Tor .Onion
-Monero payment gateway accessible over tor.
+It's possible to run xmrSale on an onion site. However, currently this will only work in some Tor browsers, and likely not in the official Tor Browser unless you fully enable javascript which is a bad idea. This is something we would like to change in the future.
+
 On your xmrSale machine, install tor and in `/etc/tor/torrc`:
 ```
 HiddenServiceDir /var/lib/tor/xmrsale/
@@ -42,5 +43,3 @@ sudo systemctl restart tor
 cat /var/lib/tor/xmrsale/hostname
 ```
 to get your onion URL. Go visit!
-
-Note that this will only work in some Tor browsers, and often not in the official Tor Browser unless you fully enable javascript etc.
