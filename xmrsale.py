@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import (
     Flask,
     render_template,
@@ -15,11 +16,12 @@ import sqlite3
 from pprint import pprint
 import json
 
+import setup_wallet_rpc
 from gateways import ssh_tunnel
 import config
 from payments import database
 from payments.price_feed import get_xmr_value
-from pay import monerod
+from node import monerod
 from gateways import woo_webhook
 
 app = Flask(__name__)
@@ -290,12 +292,21 @@ api.add_resource(check_payment, "/api/checkpayment")
 api.add_resource(complete_payment, "/api/completepayment")
 
 
-# Test connections on startup:
-print("Connecting to node...")
-monero_node = monerod.xmrd()
-print("Connection to monero node successful.")
-
-
-
 if __name__ == "__main__":
-    app.run(debug=False)
+    print("Checking wallet configuration...")
+
+    setup_wallet_rpc.check_wallet_setup(
+        config.cli_dir, config.wallet_name, app.config["SECRET_KEY"]
+    )
+    setup_wallet_rpc.run_rpc_process(config.cli_dir)
+    import subprocess
+
+    print("\n\nPausing for RPC process to begin...")
+    time.sleep(5)
+    subprocess.run(["tail", "-f", config.cli_dir + "/" + "monero-wallet-rpc.log"])
+else:
+    setup_wallet_rpc.run_rpc_process(config.cli_dir)
+    # Test connections on startup:
+    print("Connecting to node...")
+    monero_node = monerod.xmrd(app.config["SECRET_KEY"])
+    print("Connection to monero node successful.")

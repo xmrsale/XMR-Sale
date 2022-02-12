@@ -2,7 +2,7 @@ import subprocess
 import time
 
 import config
-from pay import monerod
+from node import monerod
 
 
 def open_tunnel(host, port):
@@ -43,5 +43,5 @@ if config.tunnel_host is not None:
     tunnel_proc2 = open_tunnel(config.tunnel_host, config.monerowallet_rpcport)
     time.sleep(3)
 else:
-    print("Connecting to local node..")
+    print("Using local node..")
     tunnel_proc = None
