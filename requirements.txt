@@ -9,3 +9,4 @@ protobuf==3.15.6
 flask_restplus==0.13.0
 Werkzeug==0.16.1
 PySocks==1.7.1
+itsdangerous==2.0.1

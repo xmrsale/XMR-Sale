@@ -1,3 +1,5 @@
+## Outdated -- see main readme.
+
 # Installation
 xmrSale needs a Monero node to check the Monero blockchain for payments. If you don't have a node, you can follow the Docker installation below which will install one for you. Or you can [install one](https://sethforprivacy.com/guides/run-a-monero-node-advanced/) yourself. While you can run xmrSale on the same machine as your Monero node, a separate VPS for xmrSale is recommended.
 ## Install (with node)

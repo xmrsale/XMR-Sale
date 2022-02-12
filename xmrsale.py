@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import (
     Flask,
     render_template,
@@ -14,12 +15,14 @@ import uuid
 import sqlite3
 from pprint import pprint
 import json
+import argparse
 
+import walletrpc
 from gateways import ssh_tunnel
 import config
 from payments import database
 from payments.price_feed import get_xmr_value
-from pay import monerod
+from node import monerod
 from gateways import woo_webhook
 
 app = Flask(__name__)
@@ -33,7 +36,7 @@ else:
         app.config["SECRET_KEY"] = os.urandom(64).hex()
         f.write(app.config["SECRET_KEY"])
 
-print("Initialised Flask with secret key: {}".format(app.config["SECRET_KEY"]))
+print("[xmrsale api-key] : {}\n".format(app.config["SECRET_KEY"]))
 
 # Create payment database if it does not exist
 if not os.path.exists("database.db"):
@@ -224,7 +227,7 @@ class complete_payment(Resource):
                 print(err)
                 return {"message": err}, 500
 
-            print("Successfully confirmed payment via webhook.")
+            print("successfully confirmed payment via webhook.")
             return {"message": "Payment confirmed with store."}, 200
 
         return {"message": "Payment confirmed."}, 200
@@ -272,7 +275,7 @@ def check_payment_status(uuid):
                 }
             )
 
-    print("Invoice {} status: {}".format(uuid, status))
+    print("invoice {} status: {}".format(uuid, status))
     return status
 
 
@@ -290,12 +293,55 @@ api.add_resource(check_payment, "/api/checkpayment")
 api.add_resource(complete_payment, "/api/completepayment")
 
 
-# Test connections on startup:
-print("Connecting to node...")
-monero_node = monerod.xmrd()
-print("Connection to monero node successful.")
+parser = argparse.ArgumentParser("xmrsale - Self Hosted Monero Payment Gateway")
+parser.add_argument(
+    "-s", "--setup", action="store_true", help="Initialise xmrsale for the first time"
+)
+parser.add_argument(
+    "-c", "--clean", action="store_true", help="Clean up xmrsale directory"
+)
+parser.add_argument("-t", "--test-start", action="store_true", help="Test run xmrsale")
+parser.add_argument(
+    "--sync", action="store_true", help="Run wallet-rpc alone in foreground to sync wallet"
+)
+args, unknown = parser.parse_known_args()
 
+if args.setup:
+    print("checking wallet configuration...")
 
+    walletrpc.check_wallet_setup(
+        config.cli_dir, config.wallet_name, app.config["SECRET_KEY"]
+    )
+    walletrpc.run_rpc_process(config.cli_dir)
+    import subprocess
 
-if __name__ == "__main__":
-    app.run(debug=False)
+    print("\n\npausing for RPC process to begin...")
+    time.sleep(5)
+    subprocess.run(["tail", "-f", config.cli_dir + "/" + "monero-wallet-rpc.log"])
+elif args.clean:
+    walletrpc.clean(config.cli_dir)
+elif args.sync:
+    print("checking wallet configuration...")
+
+    walletrpc.check_wallet_setup(
+        config.cli_dir, config.wallet_name, app.config["SECRET_KEY"]
+    )
+    walletrpc.run_rpc_process(config.cli_dir)
+    import subprocess
+
+    print("\n\npausing for RPC process to begin...")
+    time.sleep(5)
+    subprocess.run(["tail", "-f", config.cli_dir + "/" + "monero-wallet-rpc.log"])
+else:
+    log_file = "rpc.log"
+    walletrpc.run_rpc_process(config.cli_dir, log_file)
+    while not walletrpc.check_ready(log_file):
+        print("waiting for monero-wallet-rpc refresh to finish [see {}]".format(log_file))
+        time.sleep(2)
+    
+    # Test connections on startup:
+    print("connecting to node...")
+    monero_node = monerod.xmrd(app.config["SECRET_KEY"])
+    print("[[connection to monero node successful]]")
+    print("")
+    print("")
