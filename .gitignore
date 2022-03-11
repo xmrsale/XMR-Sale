@@ -8,3 +8,8 @@ pay/__pycache__/
 xmrsale_API_key
 .venv/
 database.db
+xmrsale_wallet
+xmrsale_wallet.keys
+*.keys
+monero-cli/
+xmrsale_rpc.conf
